@@ -1,1 +1,1 @@
-# vama-desktop
+# desktop
