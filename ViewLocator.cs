@@ -1,9 +1,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using vama_desktop.ViewModels;
+using VamaDesktop.ViewModels;
 
-namespace vama_desktop;
+namespace VamaDesktop;
 
 public class ViewLocator : IDataTemplate
 {

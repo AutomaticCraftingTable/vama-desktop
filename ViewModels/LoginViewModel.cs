@@ -2,6 +2,7 @@
 
 namespace VamaDesktop.ViewModels;
 
-public class ViewModelBase : ReactiveObject
+public class LoginViewModel : ViewModelBase
 {
+    
 }

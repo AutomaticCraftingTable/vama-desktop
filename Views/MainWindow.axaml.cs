@@ -1,11 +1,13 @@
 using Avalonia.Controls;
+using VamaDesktop.ViewModels;
 
-namespace vama_desktop.Views;
+namespace VamaDesktop.Views;
 
 public partial class MainWindow : Window
 {
     public MainWindow()
     {
+        DataContext = new MainWindowViewModel();
         InitializeComponent();
     }
 }

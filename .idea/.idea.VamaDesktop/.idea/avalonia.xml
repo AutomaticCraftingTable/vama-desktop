@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="App.axaml" value="VamaDesktop.csproj" />
+        <entry key="Views/Login.axaml" value="VamaDesktop.csproj" />
+        <entry key="Views/LoginView.axaml" value="VamaDesktop.csproj" />
+        <entry key="Views/MainWindow.axaml" value="VamaDesktop.csproj" />
+        <entry key="Views/Register.axaml" value="VamaDesktop.csproj" />
+        <entry key="Views/RegisterView.axaml" value="VamaDesktop.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
