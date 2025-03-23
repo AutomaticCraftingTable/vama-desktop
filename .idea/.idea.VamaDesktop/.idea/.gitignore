@@ -2,10 +2,10 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/modules.xml
-/.idea.vama-desktop.iml
-/contentModel.xml
 /projectSettingsUpdater.xml
+/.idea.VamaDesktop.iml
+/contentModel.xml
+/modules.xml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
