@@ -1,0 +1,6 @@
+{
+    "name": "VamaDesktop Container",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/application"
+}

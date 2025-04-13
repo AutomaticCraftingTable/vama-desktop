@@ -1,0 +1,13 @@
+services:
+    app:
+        container_name: vama-desktop-app-dev
+        build:
+            context: ./environment/app
+            dockerfile: Dockerfile
+        working_dir: /application
+        volumes:
+            - .:/application
+        network_mode: host
+        stdin_open: true
+        tty: true
+        restart: unless-stopped
