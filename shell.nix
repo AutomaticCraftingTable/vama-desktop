@@ -1,11 +1,8 @@
 { pkgs ? import <nixpkgs> {} }:
 
-(pkgs.buildFHSEnv {
-  name = "rider-env";
-  targetPkgs = pkgs: (with pkgs; [
-    rider
+pkgs.mkShell {
+  packages = with pkgs; [
     dotnetCorePackages.dotnet_9.sdk
     fontconfig
-  ]);
-  runScript = "rider";
-}).env
+  ];
+}
