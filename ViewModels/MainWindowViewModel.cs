@@ -3,22 +3,16 @@ using ReactiveUI;
 
 namespace VamaDesktop.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase
+public class MainWindowViewModel : ViewModelBase, IScreen
 {
-    private ViewModelBase _currentView = new RegisterViewModel();
-    public ViewModelBase CurrentView
-    {
-        get => _currentView;
-        set => this.RaiseAndSetIfChanged(ref _currentView, value);
-    }
-
-    public ReactiveCommand<Unit, ViewModelBase> ShowRegister { get; }
-    public ReactiveCommand<Unit, ViewModelBase> ShowLogin { get; }
+    public RoutingState Router { get; } = new();
+    public ReactiveCommand<Unit, IRoutableViewModel> GoNext { get; }
+    public ReactiveCommand<Unit, IRoutableViewModel> GoBack => Router.NavigateBack;
     
     public MainWindowViewModel()
     {
-        ShowRegister = ReactiveCommand.Create(() => CurrentView = new RegisterViewModel());;
-        ShowLogin = ReactiveCommand.Create(() => CurrentView = new LoginViewModel());
+        GoNext = ReactiveCommand.CreateFromObservable(
+            () => Router.Navigate.Execute(new RegisterViewModel(this))
+        );
     }
-
 }

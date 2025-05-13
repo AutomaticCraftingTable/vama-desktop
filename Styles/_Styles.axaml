@@ -1,0 +1,34 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="24">
+            <StackPanel Spacing="12" Background="{DynamicResource BackgroundBrush}" Width="400">
+                <Button Content="Primary Button" />
+                <Button Classes="secondary" Content="Secondary Button" />
+                <Button Classes="slim" Content="Slim Button" />
+                <Button Classes="wide" Content="Wide Button" />
+                <Button Classes="current" Content="Current Button" />
+                <TextBox />
+                <CheckBox Content="By checking this you accept the terms of condition" />
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <StyleInclude Source="Button.axaml" />
+    <StyleInclude Source="Window.axaml" />
+    <StyleInclude Source="CheckBox.axaml" />
+    <StyleInclude Source="TextBox.axaml" />
+    <StyleInclude Source="Border.axaml" />
+    <StyleInclude Source="Label.axaml" />
+
+    <Style Selector=":is(TemplatedControl) /template/ ContentPresenter">
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                <BrushTransition Property="Background" Duration="0:0:0.1" />
+                <BrushTransition Property="Foreground" Duration="0:0:0.1" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+</Styles>

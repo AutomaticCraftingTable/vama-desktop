@@ -1,13 +1,18 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
+using Avalonia.ReactiveUI;
+using ReactiveUI;
 using VamaDesktop.ViewModels;
 
 namespace VamaDesktop.Views;
 
-public partial class MainWindow : Window
+public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 {
     public MainWindow()
     {
-        DataContext = new MainWindowViewModel();
-        InitializeComponent();
+        this.AttachDevTools();
+        this.WhenActivated(disposables => { });
+        AvaloniaXamlLoader.Load(this);
     }
 }

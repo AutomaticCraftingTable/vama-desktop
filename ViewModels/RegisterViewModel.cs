@@ -1,6 +1,10 @@
-﻿namespace VamaDesktop.ViewModels;
+﻿using System;
+using ReactiveUI;
 
-public class RegisterViewModel : ViewModelBase
+namespace VamaDesktop.ViewModels;
+
+public class RegisterViewModel(IScreen screen) : ViewModelBase, IRoutableViewModel
 {
-    
+    public string UrlPathSegment { get; } = Guid.NewGuid().ToString().Substring(0, 5);
+    public IScreen HostScreen { get; } = screen;
 }

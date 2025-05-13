@@ -1,0 +1,48 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style Selector="Button">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
+        <Setter Property="Padding" Value="20,12" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Style Selector="^:pointerover" >
+            <Setter Property="Background" Value="{DynamicResource PrimaryHoverBrush}" />
+        </Style>
+        <Style Selector="^.wide">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+        <Style Selector="^.current">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+        <Style Selector="^.secondary">
+            <Setter Property="Background" Value="{DynamicResource SecondaryColor}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+            <Style Selector="^:pointerover" >
+                <Setter Property="Background" Value="{DynamicResource SecondaryHoverColor}" />
+            </Style>
+            <Style Selector="^:pressed /template/ ContentPresenter" >
+                <Setter Property="Background" Value="{DynamicResource SecondaryHoverColor}" />
+            </Style>
+            <Style Selector="^:pointerover:pressed /template/ ContentPresenter" >
+                <Setter Property="Background" Value="{DynamicResource SecondaryHoverColor}" />
+            </Style>
+        </Style>
+        <Style Selector="^.slim">
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="Background" Value="{DynamicResource SecondaryColor}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+            <Style Selector="^:pointerover" >
+                <Setter Property="Background" Value="{DynamicResource SecondaryHoverColor}" />
+            </Style>
+            <Style Selector="^:pressed /template/ ContentPresenter" >
+                <Setter Property="Background" Value="{DynamicResource SecondaryHoverColor}" />
+            </Style>
+        </Style>
+    </Style>
+</Styles>

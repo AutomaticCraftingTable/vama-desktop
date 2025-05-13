@@ -3,13 +3,102 @@
              x:Class="VamaDesktop.App"
              xmlns:local="using:VamaDesktop"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
-  
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <Color x:Key="PrimaryColor">#FF000000</Color>
+                    <Color x:Key="PrimaryHoverColor">#FF191919</Color>
+                    <Color x:Key="PrimaryPressedColor">#FF242424</Color>
+                    <Color x:Key="SecondaryColor">#FFF1F1F1</Color>
+                    <Color x:Key="SecondaryHoverColor">#FFE9E9E9</Color>
+                    <Color x:Key="SecondaryPressedColor">#FFDEDEDE</Color>
+                    <Color x:Key="BackgroundColor">#FFFFFFFF</Color>
+                    <Color x:Key="TextColor">#FF000000</Color>
+                    <Color x:Key="TextPrimaryColor">#FFFFFFFF</Color>
+                    <Color x:Key="TextSecondaryColor">#FF6D6D6D</Color>
+                    <Color x:Key="TextDimmedColor">#FF808080</Color>
+                    <Color x:Key="AccentColor">#FF00B4CC</Color>
+                    <Color x:Key="LikeColor">#FFFF5454</Color>
+                    <Color x:Key="DangerColor">#FFCA3E3E</Color>
+                    <Color x:Key="WarningColor">#FFFFEFB9</Color>
+                    <Color x:Key="TextWarningColor">#FFB7984A</Color>
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="Dark">
+                    <Color x:Key="PrimaryColor">#FF344253</Color>
+                    <Color x:Key="PrimaryHoverColor">#FF2A4E5F</Color>
+                    <Color x:Key="PrimaryPressedColor">#FF2F576A</Color>
+                    <Color x:Key="SecondaryColor">#FF242424</Color>
+                    <Color x:Key="SecondaryHoverColor">#FF292929</Color>
+                    <Color x:Key="SecondaryPressedColor">#FF333333</Color>
+                    <Color x:Key="BackgroundColor">#FF1C1C1C</Color>
+                    <Color x:Key="TextColor">#FFCCCCCC</Color>
+                    <Color x:Key="TextPrimaryColor">#FFCCCCCC</Color>
+                    <Color x:Key="TextSecondaryColor">#FF808080</Color>
+                    <Color x:Key="TextDimmedColor">#FF6D6D6D</Color>
+                    <Color x:Key="AccentColor">#FF009DB2</Color>
+                    <Color x:Key="LikeColor">#FFFF5454</Color>
+                    <Color x:Key="DangerColor">#FF533434</Color>
+                    <Color x:Key="WarningColor">#FF3D2D05</Color>
+                    <Color x:Key="TextWarningColor">#FFD7B74A</Color>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            
+            <Color x:Key="TransparentColor">#00000000</Color>
+            <SolidColorBrush x:Key="LikeBrush" Color="{DynamicResource LikeColor}" />
+            <SolidColorBrush x:Key="TextPrimaryBrush" Color="{DynamicResource TextPrimaryColor}" />
+            <SolidColorBrush x:Key="TextSecondaryBrush" Color="{DynamicResource TextSecondaryColor}" />
+            <SolidColorBrush x:Key="TextDimmedBrush" Color="{DynamicResource TextDimmedColor}" />
+            <SolidColorBrush x:Key="TextWarningBrush" Color="{DynamicResource TextWarningColor}" />
+
+            <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource PrimaryColor}" />
+            <SolidColorBrush x:Key="PrimaryHoverBrush" Color="{DynamicResource PrimaryHoverColor}" />
+            <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource SecondaryColor}" />
+            <SolidColorBrush x:Key="SecondaryHoverBrush" Color="{DynamicResource SecondaryHoverColor}" />
+            <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource BackgroundColor}" />
+            <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
+            <SolidColorBrush x:Key="AccentBrush" Color="{DynamicResource AccentColor}" />
+            <SolidColorBrush x:Key="DangerBrush" Color="{DynamicResource DangerColor}" />
+            <SolidColorBrush x:Key="WarningBrush" Color="{DynamicResource WarningColor}" />
+
+            <SolidColorBrush x:Key="ThemeBackgroundBrush" Color="{DynamicResource BackgroundColor}" />
+            <SolidColorBrush x:Key="ThemeBorderLowBrush" Color="{DynamicResource SecondaryColor}" />
+            <SolidColorBrush x:Key="ThemeBorderMidBrush" Color="{DynamicResource SecondaryColor}" />
+            <SolidColorBrush x:Key="ThemeBorderHighBrush" Color="{DynamicResource SecondaryColor}" />
+            <SolidColorBrush x:Key="ThemeControlLowBrush" Color="#FFFF0000" />
+            <SolidColorBrush x:Key="ThemeControlMidBrush" Color="{DynamicResource SecondaryColor}" />
+            <SolidColorBrush x:Key="ThemeControlMidHighBrush" Color="{DynamicResource PrimaryColor}" />
+            <SolidColorBrush x:Key="ThemeControlHighBrush" Color="{DynamicResource PrimaryPressedColor}" />
+            <SolidColorBrush x:Key="ThemeControlVeryHighBrush" Color="{DynamicResource PrimaryPressedColor}" />
+            <SolidColorBrush x:Key="ThemeControlHighlightLowBrush" Color="#FFFF0000" />
+            <SolidColorBrush x:Key="ThemeControlHighlightMidBrush" Color="#FFFF0000" />
+            <SolidColorBrush x:Key="ThemeControlHighlightHighBrush" Color="#FFFF0000" />
+            <SolidColorBrush x:Key="ThemeForegroundBrush" Color="{DynamicResource TextColor}" />
+            <SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource AccentColor}" />
+            <SolidColorBrush x:Key="HighlightBrush2" Color="{DynamicResource AccentColor}" />
+            <SolidColorBrush x:Key="HyperlinkVisitedBrush" Color="{DynamicResource AccentColor}" />
+
+            <SolidColorBrush x:Key="RefreshVisualizerForeground" Color="Black" />
+            <SolidColorBrush x:Key="RefreshVisualizerBackground" Color="Transparent" />
+
+            <SolidColorBrush x:Key="CaptionButtonForeground" Color="{DynamicResource TextColor}" />
+            <SolidColorBrush x:Key="CaptionButtonBackground" Color="{DynamicResource PrimaryColor}" />
+            <SolidColorBrush x:Key="CaptionButtonBorderBrush" Color="{DynamicResource TransparentColor}" />
+            
+            <Thickness x:Key="ThemeBorderThickness">0</Thickness>
+
+        </ResourceDictionary>
+    </Application.Resources>
+
     <Application.Styles>
-        <FluentTheme />
+        <SimpleTheme />
+        <StyleInclude Source="Styles/_Styles.axaml" />
+        <StyleInclude Source="Controls/_Controls.axaml" />
     </Application.Styles>
 </Application>

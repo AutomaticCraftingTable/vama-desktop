@@ -3,19 +3,44 @@
         xmlns:vm="using:VamaDesktop.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rxui="http://reactiveui.net"
+        xmlns:controls="using:VamaDesktop.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="VamaDesktop.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="VamaDesktop">
-    <StackPanel>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Margin="20"
-                    Spacing="10">
-            <Button Background="#4AC3CE" CornerRadius="30" Padding="15,8" FontWeight="Medium" Foreground="White" Content="Register" Command="{Binding ShowRegister}" />
-            <Button Background="#E9E9E9" CornerRadius="30" Padding="15,8" FontWeight="Medium" Content="Login" Command="{Binding ShowLogin}" />
-        </StackPanel>
-        <ContentControl Content="{Binding CurrentView}" />
+        Title="VamaDesktop"
+        Background="{DynamicResource BackgroundBrush}">
+    <StackPanel Orientation="Horizontal">
+        <ScrollViewer>
+            <Border Classes="normal" Background="{DynamicResource SecondaryColor}">
+                <StackPanel Classes="normal" Spacing="12">
+                    <Label Classes="dimmed">Zarządzanie</Label>
+                    <Button Classes="current" Content="Użytkownicy" />
+                    <Button Classes="secondary" Content="Moderatorzy" />
+                    <Button Classes="secondary" Content="Notatki" />
+                    <Button Classes="secondary" Content="Zgłoszeni autorzy" />
+                    <Button Classes="secondary" Content="Zgłoszone artykuły" />
+                    <Button Classes="secondary" Content="Zgłoszone komentarze" />
+                    <Button Classes="secondary" Content="Aktywność" />
+                    <Label Classes="dimmed">Super zarządzanie</Label>
+                    <Button Classes="secondary" Content="Aktywność administratorów" />
+                    <Label Classes="dimmed">Sesja</Label>
+                    <Button Classes="secondary" Content="Wyloguj się" />
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+
+        <Border Classes="normal" CornerRadius="8" Margin="6">
+            <StackPanel Spacing="12">
+            <Button></Button>
+            <Button></Button>
+            <Button></Button>
+            <Button></Button>
+                <controls:TemplatedControlTestView UserName="AAA" Surname="BBB">
+                    
+                </controls:TemplatedControlTestView>
+            </StackPanel>
+        </Border>
     </StackPanel>
 </Window>
