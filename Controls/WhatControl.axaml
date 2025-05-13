@@ -1,0 +1,20 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:VamaDesktop.Controls">
+    <Design.PreviewWith>
+        <StackPanel>
+            <controls:WhatControl Some="aarst"/>
+            <controls:WhatControl />
+            <controls:WhatControl />
+            <controls:WhatControl />
+        </StackPanel>
+    </Design.PreviewWith>
+
+    <Style Selector="controls|WhatControl">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <TextBlock Text="{TemplateBinding Some}" />
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

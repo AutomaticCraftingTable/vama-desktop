@@ -1,0 +1,32 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:VamaDesktop.Controls">
+    <Design.PreviewWith>
+        <controls:Sidebar />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|Sidebar">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ScrollViewer>
+                    <Border Classes="normal" Background="{DynamicResource SecondaryColor}">
+                        <StackPanel Classes="normal" Spacing="12">
+                            <Label Classes="dimmed">Zarządzanie</Label>
+                            <controls:GroupButton Classes="secondary" Content="Użytkownicy" Click="{Binding goPage1}" />
+                            <controls:GroupButton  Classes="secondary" Content="Moderatorzy" Click="{Binding goPage2}" />
+                            <controls:GroupButton  Classes="secondary" Content="Notatki" Click="{Binding goPage3}" />
+                            <controls:GroupButton  Classes="secondary" Content="Zgłoszeni autorzy" Click="{Binding goPage4}" />
+                            <controls:GroupButton  Classes="secondary" Content="Zgłoszone artykuły" Click="{Binding goPage5}" />
+                            <controls:GroupButton  Classes="secondary" Content="Zgłoszone komentarze" Click="{Binding goPage6}" />
+                            <controls:GroupButton  Classes="secondary" Content="Aktywność" Click="{Binding goPage7}" />
+                            <Label Classes="dimmed">Super zarządzanie</Label>
+                            <controls:GroupButton  Classes="secondary" Content="Aktywność administratorów" Click="{Binding goPage8}" />
+                            <Label Classes="dimmed">Sesja</Label>
+                            <controls:GroupButton  Classes="secondary" Content="Wyloguj się" Click="{Binding goPage9}" />
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

@@ -1,0 +1,14 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:VamaDesktop.Controls">
+    <Design.PreviewWith>
+        <Border Padding="24">
+            <StackPanel Spacing="12" Background="{DynamicResource BackgroundBrush}" Width="400">
+                <controls:WhatControl />
+                <controls:GroupButton />
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+    <StyleInclude Source="WhatControl.axaml" />
+    <StyleInclude Source="GroupButton.axaml" />
+</Styles>
