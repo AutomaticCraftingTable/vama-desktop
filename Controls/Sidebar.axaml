@@ -9,20 +9,20 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <ScrollViewer>
-                    <Border Classes="normal" Background="{DynamicResource SecondaryColor}">
+                    <Border HorizontalAlignment="Left" Classes="normal" Background="{DynamicResource SecondaryColor}">
                         <StackPanel Classes="normal" Spacing="12">
                             <Label Classes="dimmed">Zarządzanie</Label>
-                            <controls:GroupButton Classes="secondary" Content="Użytkownicy" Click="{Binding goPage1}" />
-                            <controls:GroupButton  Classes="secondary" Content="Moderatorzy" Click="{Binding goPage2}" />
-                            <controls:GroupButton  Classes="secondary" Content="Notatki" Click="{Binding goPage3}" />
-                            <controls:GroupButton  Classes="secondary" Content="Zgłoszeni autorzy" Click="{Binding goPage4}" />
-                            <controls:GroupButton  Classes="secondary" Content="Zgłoszone artykuły" Click="{Binding goPage5}" />
-                            <controls:GroupButton  Classes="secondary" Content="Zgłoszone komentarze" Click="{Binding goPage6}" />
-                            <controls:GroupButton  Classes="secondary" Content="Aktywność" Click="{Binding goPage7}" />
+                            <controls:GroupButton Classes="secondary" Content="Użytkownicy" />
+                            <controls:GroupButton  Classes="secondary" Content="Moderatorzy" />
+                            <controls:GroupButton  Classes="secondary" Content="Notatki" />
+                            <controls:GroupButton  Classes="secondary" Content="Zgłoszeni autorzy" />
+                            <controls:GroupButton  Classes="secondary" Content="Zgłoszone artykuły" />
+                            <controls:GroupButton  Classes="secondary" Content="Zgłoszone komentarze" />
+                            <controls:GroupButton  Classes="secondary" Content="Aktywność" />
                             <Label Classes="dimmed">Super zarządzanie</Label>
-                            <controls:GroupButton  Classes="secondary" Content="Aktywność administratorów" Click="{Binding goPage8}" />
+                            <controls:GroupButton  Classes="secondary" Content="Aktywność administratorów" />
                             <Label Classes="dimmed">Sesja</Label>
-                            <controls:GroupButton  Classes="secondary" Content="Wyloguj się" Click="{Binding goPage9}" />
+                            <controls:GroupButton  Classes="secondary" Content="Wyloguj się" />
                         </StackPanel>
                     </Border>
                 </ScrollViewer>

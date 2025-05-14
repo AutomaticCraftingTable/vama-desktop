@@ -28,6 +28,7 @@
                     <Color x:Key="DangerColor">#FFCA3E3E</Color>
                     <Color x:Key="WarningColor">#FFFFEFB9</Color>
                     <Color x:Key="TextWarningColor">#FFB7984A</Color>
+                    <Color x:Key="TextFailureColor">#D32F2F</Color>
                 </ResourceDictionary>
 
                 <ResourceDictionary x:Key="Dark">
@@ -47,6 +48,7 @@
                     <Color x:Key="DangerColor">#FF533434</Color>
                     <Color x:Key="WarningColor">#FF3D2D05</Color>
                     <Color x:Key="TextWarningColor">#FFD7B74A</Color>
+                    <Color x:Key="TextFailureColor">#D32F2F</Color>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             
@@ -66,11 +68,12 @@
             <SolidColorBrush x:Key="AccentBrush" Color="{DynamicResource AccentColor}" />
             <SolidColorBrush x:Key="DangerBrush" Color="{DynamicResource DangerColor}" />
             <SolidColorBrush x:Key="WarningBrush" Color="{DynamicResource WarningColor}" />
+            <SolidColorBrush x:Key="TextFailureBrush" Color="{DynamicResource TextFailureColor}" />
 
             <SolidColorBrush x:Key="ThemeBackgroundBrush" Color="{DynamicResource BackgroundColor}" />
-            <SolidColorBrush x:Key="ThemeBorderLowBrush" Color="{DynamicResource SecondaryColor}" />
-            <SolidColorBrush x:Key="ThemeBorderMidBrush" Color="{DynamicResource SecondaryColor}" />
-            <SolidColorBrush x:Key="ThemeBorderHighBrush" Color="{DynamicResource SecondaryColor}" />
+            <SolidColorBrush x:Key="ThemeBorderLowBrush" Color="{DynamicResource PrimaryColor}" />
+            <SolidColorBrush x:Key="ThemeBorderMidBrush" Color="{DynamicResource PrimaryColor}" />
+            <SolidColorBrush x:Key="ThemeBorderHighBrush" Color="{DynamicResource PrimaryColor}" />
             <SolidColorBrush x:Key="ThemeControlLowBrush" Color="#FFFF0000" />
             <SolidColorBrush x:Key="ThemeControlMidBrush" Color="{DynamicResource SecondaryColor}" />
             <SolidColorBrush x:Key="ThemeControlMidHighBrush" Color="{DynamicResource PrimaryColor}" />
@@ -80,7 +83,7 @@
             <SolidColorBrush x:Key="ThemeControlHighlightMidBrush" Color="#FFFF0000" />
             <SolidColorBrush x:Key="ThemeControlHighlightHighBrush" Color="#FFFF0000" />
             <SolidColorBrush x:Key="ThemeForegroundBrush" Color="{DynamicResource TextColor}" />
-            <SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource AccentColor}" />
+            <SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource TextPrimaryColor}" />
             <SolidColorBrush x:Key="HighlightBrush2" Color="{DynamicResource AccentColor}" />
             <SolidColorBrush x:Key="HyperlinkVisitedBrush" Color="{DynamicResource AccentColor}" />
 

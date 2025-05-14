@@ -4,11 +4,10 @@
     <Design.PreviewWith>
         <Border Padding="24">
             <StackPanel Spacing="12" Background="{DynamicResource BackgroundBrush}" Width="400">
-                <controls:WhatControl />
                 <controls:GroupButton />
             </StackPanel>
         </Border>
     </Design.PreviewWith>
-    <StyleInclude Source="WhatControl.axaml" />
-    <StyleInclude Source="GroupButton.axaml" />
+    <StyleInclude Source="ErrorWrapper.axaml" />
+    <StyleInclude Source="Sidebar.axaml" />
 </Styles>

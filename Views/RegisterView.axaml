@@ -2,28 +2,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1000"
+             xmlns:controls="using:VamaDesktop.Controls"
              x:Class="VamaDesktop.Views.RegisterView">
-    <Border CornerRadius="10"
-            BorderThickness="1"
-            MaxWidth="400"
-            Padding="20"
+    <Border MaxWidth="400"
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
-        <StackPanel>
-            <TextBlock Text="Welcome to VAMA panel"
+        <StackPanel Spacing="24">
+            <Svg Width="160" Path="avares://VamaDesktop/Assets/vama.svg" />
+            <TextBlock Text="Witamy w panelu VAMA"
                        FontSize="24"
                        FontWeight="Bold"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,20" />
-            <TextBox Watermark="Email" />
-            <TextBox Watermark="Password"
-                     BorderThickness="2"
-                     PasswordChar="*"
-                     >
-            </TextBox>
-            <CheckBox Content="By checking you accept the Terms of condition" />
-            <Button Content="Register" />
+                       HorizontalAlignment="Center" />
+            
+            <controls:ErrorWrapper Message="Błąd">
+                <TextBox Watermark="Email" />
+            </controls:ErrorWrapper>
+            
+            <controls:ErrorWrapper>
+                <TextBox Watermark="Hasło"
+                         PasswordChar="*" />
+            </controls:ErrorWrapper>
+            
+            <CheckBox Content="Zaznaczając, akceptuję regulamin i politykę prywatności" />
+            <Button Classes="wide" Content="Zarejestruj się" />
+            <TextBlock HorizontalAlignment="Center">Albo</TextBlock>
+            <Button Classes="secondary" HorizontalAlignment="Center"
+                    Content="Zaloguj się" />
         </StackPanel>
     </Border>
 </UserControl>

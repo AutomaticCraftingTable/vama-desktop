@@ -20,6 +20,6 @@
         
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Padding" Value="12,12" />
-        <Setter Property="CornerRadius" Value="2" />
+        <Setter Property="CornerRadius" Value="4" />
     </Style>
 </Styles>
