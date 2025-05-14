@@ -1,10 +1,11 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { allowUnfree = true; } }:
 
 (pkgs.buildFHSEnv {
   name = "dotnet-env";
   targetPkgs = pkgs: with pkgs; [
     dotnetCorePackages.dotnet_9.sdk
     
+    corefonts
     fontconfig
     freetype
     harfbuzz
@@ -26,5 +27,5 @@
     libunwind
     stdenv.cc.cc.lib
   ];
-  runScript = "dotnet restore";
+  runScript = "bash";
 }).env
