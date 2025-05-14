@@ -1,6 +1,6 @@
-﻿namespace VamaDesktop.ViewModels;
+namespace VamaDesktop.ViewModels;
 
-public class RegisterViewModel : ViewModelBase
+public class RegisterViewModel:ViewModelBase
 {
     
 }

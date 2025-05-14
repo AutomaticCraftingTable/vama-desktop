@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1000"
+             x:Class="VamaDesktop.Views.LoginVIew">
+    <Border MaxWidth="400"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+        <StackPanel Spacing="24">
+            <Svg Width="160" Path="avares://VamaDesktop/Assets/vama.svg"/>
+            <TextBlock Text="Witamy w panelu VAMA"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+            <TextBox Watermark="Email" />
+            <TextBox Watermark="Hasło"
+                     PasswordChar="*" />
+            <Button Classes="wide" Margin="0,12,0,0"
+                    Content="Zaloguj się" />
+            <TextBlock HorizontalAlignment="Center">Albo</TextBlock>
+            <Button Classes="secondary" HorizontalAlignment="Center"
+                    Content="Zarejestruj się" />
+        </StackPanel>
+    </Border>
+</UserControl>

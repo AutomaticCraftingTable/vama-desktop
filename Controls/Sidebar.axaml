@@ -1,0 +1,32 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:VamaDesktop.Controls">
+    <Design.PreviewWith>
+        <controls:Sidebar />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|Sidebar">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ScrollViewer>
+                    <Border HorizontalAlignment="Left" Classes="normal" Background="{DynamicResource SecondaryColor}">
+                        <StackPanel Classes="normal" Spacing="12">
+                            <Label Classes="dimmed">Zarządzanie</Label>
+                            <controls:GroupButton Classes="secondary" Content="Użytkownicy" />
+                            <controls:GroupButton  Classes="secondary" Content="Moderatorzy" />
+                            <controls:GroupButton  Classes="secondary" Content="Notatki" />
+                            <controls:GroupButton  Classes="secondary" Content="Zgłoszeni autorzy" />
+                            <controls:GroupButton  Classes="secondary" Content="Zgłoszone artykuły" />
+                            <controls:GroupButton  Classes="secondary" Content="Zgłoszone komentarze" />
+                            <controls:GroupButton  Classes="secondary" Content="Aktywność" />
+                            <Label Classes="dimmed">Super zarządzanie</Label>
+                            <controls:GroupButton  Classes="secondary" Content="Aktywność administratorów" />
+                            <Label Classes="dimmed">Sesja</Label>
+                            <controls:GroupButton  Classes="secondary" Content="Wyloguj się" />
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>
