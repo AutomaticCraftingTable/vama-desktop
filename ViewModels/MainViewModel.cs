@@ -10,9 +10,8 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty]
     private ViewModelBase _content = default!;
 
-    public MainViewModel(HistoryRouter<ViewModelBase> router)
+    public MainViewModel(HistoryRouter<ViewModelBase> router): base(router)
     {
-        IsLoggedIn = false;
         router.CurrentViewModelChanged += viewModel => Content = viewModel;
         router.GoTo<RegisterViewModel>();
     }

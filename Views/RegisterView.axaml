@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1000"
              xmlns:controls="using:VamaDesktop.Controls"
+             xmlns:vm="using:VamaDesktop.ViewModels"
+             x:DataType="vm:RegisterViewModel"
              x:Class="VamaDesktop.Views.RegisterView">
     <Border MaxWidth="400"
             VerticalAlignment="Center"
@@ -24,11 +26,15 @@
                          PasswordChar="*" />
             </controls:ErrorWrapper>
             
-            <CheckBox Content="Zaznaczając, akceptuję regulamin i politykę prywatności" />
+            <controls:ErrorWrapper Message="Błąd">
+                <CheckBox Content="Zaznaczając, akceptuję regulamin i politykę prywatności" />
+            </controls:ErrorWrapper>
+            
             <Button Classes="wide" Content="Zarejestruj się" />
             <TextBlock HorizontalAlignment="Center">Albo</TextBlock>
             <Button Classes="secondary" HorizontalAlignment="Center"
-                    Content="Zaloguj się" />
+                    Content="Zaloguj się"
+                    Click="GoLogin" />
         </StackPanel>
     </Border>
 </UserControl>

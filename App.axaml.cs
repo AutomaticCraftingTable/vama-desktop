@@ -51,6 +51,7 @@ public partial class App : Application
         // services.AddTransient<HomeViewModel>();
         services.AddSingleton<MainViewModel>();
         services.AddTransient<RegisterViewModel>();
+        services.AddTransient<LoginViewModel>();
         return services.BuildServiceProvider();
     }
 }

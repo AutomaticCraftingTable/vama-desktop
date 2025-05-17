@@ -3,12 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace VamaDesktop.ViewModels;
 
-public class ViewModelBase : ObservableObject
+public class ViewModelBase(HistoryRouter<ViewModelBase> router) : ObservableObject
 {
-    // protected HistoryRouter<ViewModelBase> _router;
-    //
-    // public ViewModelBase(HistoryRouter<ViewModelBase> router)
-    // {
-    //     _router = router;
-    // }
+    public HistoryRouter<ViewModelBase> Router { get; } = router;
 }

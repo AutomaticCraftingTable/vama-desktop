@@ -1,7 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
-        <Border Padding="20">
+        <Border Padding="20" MaxWidth="100">
             <CheckBox>
                 checkbox content
             </CheckBox>
@@ -15,6 +15,7 @@
         <Setter Property="FontSize" Value="14" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="4" />
+        <Setter Property="Margin" Value="8,0" />
         <Setter Property="CornerRadius" Value="4" />
         <Setter Property="Cursor" Value="Hand" />
         <Style Selector="^:checked">
@@ -23,6 +24,7 @@
         <Style Selector="^ AccessText">
             <Setter Property="Foreground" Value="{DynamicResource TextDimmedBrush}"/>
             <Setter Property="Margin" Value="4,0,0,0"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
     </Style>
 </Styles>

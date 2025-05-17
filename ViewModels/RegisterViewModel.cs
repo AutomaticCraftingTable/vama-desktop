@@ -1,6 +1,7 @@
+using Avalonia.SimpleRouter;
+
 namespace VamaDesktop.ViewModels;
 
-public class RegisterViewModel:ViewModelBase
+public class RegisterViewModel(HistoryRouter<ViewModelBase> router) : ViewModelBase(router)
 {
-    
 }
