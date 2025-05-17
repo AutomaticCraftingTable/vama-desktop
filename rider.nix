@@ -1,4 +1,5 @@
 { pkgs ? import <nixpkgs> { config.allowUnfree = true; }}:
+
 (pkgs.buildFHSEnv {
   name = "rider-env";
   targetPkgs = pkgs: [ pkgs.jetbrains.rider ];

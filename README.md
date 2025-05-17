@@ -1,22 +1,19 @@
 # [vama-desktop](https://github.dev/AutomaticCraftingTable/vama-desktop)
 
-## Dependencies
-- [Nix](https://nixos.org/download/)
+## Zależności
+- Linux/WSL with [Nix](https://nixos.org/download/)
 
-## Run the project
-### Linux/WSL with Nix
-To run the shell environment:
-```bash
+## Uruchomienie projektu
+Aby uruchomić środowisko powłoki:
+```sh
 nix-shell
 ```
-To run your IDE of choice for development:
-```bash
+Aby uruchomić preferowane środowisko IDE:
+```sh
 nix-shell --run "<your-ide>"
 ```
 
-### NixOS
-Use the pre-made Rider environment:
-```bash
+Jeśli środowisko IDE nie jest zainstalowane, jest możliwość uruchomienia Ridera:
+```sh
 nix-shell rider.nix
 ```
-Or use an IDE of your choice, as described [above](#linuxwsl-with-nix)
