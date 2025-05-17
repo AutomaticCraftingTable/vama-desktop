@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { allowUnfree = true; } }:
+{ pkgs ? import <nixpkgs> { config.allowUnfree = true; } }:
 
 (pkgs.buildFHSEnv {
   name = "dotnet-env";

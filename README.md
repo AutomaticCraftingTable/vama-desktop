@@ -4,7 +4,7 @@
 - [Nix](https://nixos.org/download/)
 
 ## Run the project
-### Linux with Nix
+### Linux/WSL with Nix
 To run the shell environment:
 ```bash
 nix-shell
