@@ -26,7 +26,7 @@
                          PasswordChar="*" />
             </controls:ErrorWrapper>
 
-            <controls:ErrorWrapper Message="{Binding !RegulationsAccepted}">
+            <controls:ErrorWrapper Message="{Binding Error.Regulations}">
                 <CheckBox Content="Zaznaczając, akceptuję regulamin i politykę prywatności"
                           IsChecked="{Binding RegulationsAccepted, Mode=TwoWay}" />
             </controls:ErrorWrapper>

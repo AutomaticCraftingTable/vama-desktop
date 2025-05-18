@@ -11,4 +11,9 @@ public partial class LoginView : ViewControl<LoginViewModel>
     {
         ViewModel.Router.GoTo<RegisterViewModel>();
     }
+    
+    private void Login(object? sender, RoutedEventArgs e)
+    {
+        ViewModel.Login();
+    }
 }

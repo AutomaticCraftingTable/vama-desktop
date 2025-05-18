@@ -1,7 +1,4 @@
-using System;
-using System.ComponentModel;
 using Avalonia.SimpleRouter;
-using VamaDesktop.API;
 using VamaDesktop.API.DTO;
 using VamaDesktop.API.DTO.Exceptions;
 using VamaDesktop.API.Services;
@@ -11,32 +8,33 @@ namespace VamaDesktop.ViewModels;
 
 public class RegisterViewModel : ViewModelBase
 {
-    private readonly Request<MessageResponse, RegisterError> _registerRequest = new AuthService().Register;
+    private readonly Request<MessageResponse, RegisterError> registerRequest = new AuthService().Register;
     public bool RegulationsAccepted { get; set; }
-    
+
     private RegisterError _error = new();
 
     public RegisterError Error
     {
         get => _error;
-        private set
-        {
-            _error = value; 
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _error, value);
     }
 
     public RegisterViewModel(HistoryRouter<ViewModelBase> router) : base(router)
     {
-        _registerRequest.OnSuccess += _ => Router.GoTo<AdminPanelViewModel>();
-        _registerRequest.OnError += error => Error = error;
+        registerRequest.OnSuccess += _ => Router.GoTo<AdminPanelViewModel>();
+        registerRequest.OnError += error => Error = error;
     }
 
     public void Register()
     {
-        if (RegulationsAccepted)
+        if (!RegulationsAccepted)
         {
-            _registerRequest.Invoke();
+            Error = _error with { Regulations = "Warunki nie byli zaakceptowane" };
+        }
+        else
+        {
+            Error = _error with { Regulations = "" };
+            registerRequest.Invoke();
         }
     }
 }
