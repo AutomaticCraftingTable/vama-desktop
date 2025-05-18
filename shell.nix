@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { config.allowUnfree = true; } }:
+{ pkgs ? import <nixpkgs> { config.allowUnfree = true; }, run ? "bash" }:
 
 (pkgs.buildFHSEnv {
   name = "dotnet-env";
@@ -27,5 +27,5 @@
     libunwind
     stdenv.cc.cc.lib
   ];
-  runScript = "bash";
+  runScript = run;
 }).env
