@@ -3,7 +3,10 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.SimpleRouter;
+using DotNetEnv;
+using Flurl.Http;
 using Microsoft.Extensions.DependencyInjection;
+using VamaDesktop.API;
 using VamaDesktop.ViewModels;
 using VamaDesktop.Views;
 
@@ -18,8 +21,6 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        // In this example we use Microsoft DependencyInjection (instead of ReactiveUI / Splat)
-        // Splat would also work, just use the according methods
         IServiceProvider services = ConfigureServices();
         var mainViewModel = services.GetRequiredService<MainViewModel>();
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -43,15 +44,13 @@ public partial class App : Application
     private static ServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();
-        // Add the HistoryRouter as a service
         services.AddSingleton<HistoryRouter<ViewModelBase>>(s =>
             new HistoryRouter<ViewModelBase>(t => (ViewModelBase)s.GetRequiredService(t)));
 
-        // Add the ViewModels as a service (Main as singleton, others as transient)
-        // services.AddTransient<HomeViewModel>();
         services.AddSingleton<MainViewModel>();
         services.AddTransient<RegisterViewModel>();
         services.AddTransient<LoginViewModel>();
+        services.AddTransient<AdminPanelViewModel>();
         return services.BuildServiceProvider();
     }
 }

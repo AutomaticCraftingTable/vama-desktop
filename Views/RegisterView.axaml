@@ -16,21 +16,23 @@
                        FontSize="24"
                        FontWeight="Bold"
                        HorizontalAlignment="Center" />
-            
-            <controls:ErrorWrapper Message="Błąd">
+
+            <controls:ErrorWrapper Message="{Binding Error.Email}">
                 <TextBox Watermark="Email" />
             </controls:ErrorWrapper>
-            
-            <controls:ErrorWrapper>
+
+            <controls:ErrorWrapper Message="{Binding Error.Password}">
                 <TextBox Watermark="Hasło"
                          PasswordChar="*" />
             </controls:ErrorWrapper>
-            
-            <controls:ErrorWrapper Message="Błąd">
-                <CheckBox Content="Zaznaczając, akceptuję regulamin i politykę prywatności" />
+
+            <controls:ErrorWrapper Message="{Binding !RegulationsAccepted}">
+                <CheckBox Content="Zaznaczając, akceptuję regulamin i politykę prywatności"
+                          IsChecked="{Binding RegulationsAccepted, Mode=TwoWay}" />
             </controls:ErrorWrapper>
-            
-            <Button Classes="wide" Content="Zarejestruj się" />
+
+            <Button Classes="wide" Content="Zarejestruj się"
+                    Click="Register" />
             <TextBlock HorizontalAlignment="Center">Albo</TextBlock>
             <Button Classes="secondary" HorizontalAlignment="Center"
                     Content="Zaloguj się"

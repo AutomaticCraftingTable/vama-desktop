@@ -6,8 +6,9 @@ namespace VamaDesktop.Views;
 public partial class LoginView : ViewControl<LoginViewModel>
 {
     public LoginView() => InitializeComponent();
+    
     private void GoRegister(object? sender, RoutedEventArgs e)
     {
-        ViewModel?.Router.GoTo<RegisterViewModel>();
+        ViewModel.Router.GoTo<RegisterViewModel>();
     }
 }
