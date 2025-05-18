@@ -3,19 +3,28 @@
         xmlns:vm="using:VamaDesktop.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rxui="http://reactiveui.net"
+        xmlns:controls="using:VamaDesktop.Controls"
+        xmlns:views="clr-namespace:VamaDesktop.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="VamaDesktop.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="VamaDesktop">
-    <StackPanel>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Margin="20"
-                    Spacing="10">
-            <Button Background="#4AC3CE" CornerRadius="30" Padding="15,8" FontWeight="Medium" Foreground="White" Content="Register" Command="{Binding ShowRegister}" />
-            <Button Background="#E9E9E9" CornerRadius="30" Padding="15,8" FontWeight="Medium" Content="Login" Command="{Binding ShowLogin}" />
-        </StackPanel>
-        <ContentControl Content="{Binding CurrentView}" />
-    </StackPanel>
+        Title="VamaDesktop"
+        x:DataType="vm:MainViewModel">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0">
+            <controls:Sidebar IsVisible="{Binding IsLoggedIn}" />
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <ScrollViewer>
+                <ContentControl Content="{Binding Content}" />
+            </ScrollViewer>
+        </Grid>
+    </Grid>
 </Window>

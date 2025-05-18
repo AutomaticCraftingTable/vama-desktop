@@ -1,5 +1,5 @@
 using Avalonia.Controls;
-using VamaDesktop.ViewModels;
+using Avalonia.Interactivity;
 
 namespace VamaDesktop.Views;
 
@@ -7,7 +7,7 @@ public partial class MainWindow : Window
 {
     public MainWindow()
     {
-        DataContext = new MainWindowViewModel();
         InitializeComponent();
     }
+    
 }

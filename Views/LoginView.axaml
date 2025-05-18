@@ -1,76 +1,39 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1000"
+             xmlns:controls="using:VamaDesktop.Controls"
+             xmlns:vm="using:VamaDesktop.ViewModels"
+             x:DataType="vm:LoginViewModel"
              x:Class="VamaDesktop.Views.LoginView">
-    <Border Background="White"
-            CornerRadius="10"
-            BorderBrush="#1A000000"
-            BorderThickness="1"
-            MaxWidth="400"
-            Padding="20"
+    <Border MaxWidth="400"
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
-        <StackPanel>
-            
-            <TextBlock Text="Welcome to VAMA panel" 
-                       FontSize="24" 
-                       FontWeight="Bold" 
-                       HorizontalAlignment="Center" 
-                       Margin="0,0,0,20"
-                       Foreground="#333333"/>
+        <StackPanel Spacing="24">
+            <Svg Width="160" Path="avares://VamaDesktop/Assets/vama.svg" />
+            <TextBlock Text="Witamy w panelu VAMA"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
 
-            
-            <TextBox Watermark="Email" 
-                     BorderThickness="2"
-                     BorderBrush="#EDEDED" 
-                     CornerRadius="5"
-                     Margin="0,0,0,15" 
-                     Background="White" 
-                     Padding="10"
-                     FontSize="14">
-                <TextBox.Styles>
-                    <Style Selector="TextBox:pointerover">
-                        <Setter Property="BorderBrush" Value="#4AC3CE"/> 
-                    </Style>
-                </TextBox.Styles>
-            </TextBox>
+            <controls:ErrorWrapper Message="{Binding Error.Email}">
+                <TextBox Watermark="Email" />
+            </controls:ErrorWrapper>
 
-            
-            <TextBox Watermark="Password" 
-                     BorderThickness="2"
-                     BorderBrush="#EDEDED" 
-                     CornerRadius="5"
-                     Margin="0,0,0,20" 
-                     Background="White" 
-                     Padding="10"
-                     FontSize="14"
-                     PasswordChar="*">
-                <TextBox.Styles>
-                    <Style Selector="TextBox:pointerover /template/ ContentPresenter">
-                        <Setter Property="BorderBrush" Value="#4AC3CE"/> 
-                    </Style>
-                </TextBox.Styles>
-            </TextBox>
+            <controls:ErrorWrapper Message="{Binding Error.Password}">
+                <TextBox Watermark="Hasło" PasswordChar="*" />
+            </controls:ErrorWrapper>
 
-            <Button Content="Login" 
-                    HorizontalContentAlignment="Center"
-                    HorizontalAlignment="Stretch" 
-                    Padding="15" 
-                    Background="#4AC3CE" 
-                    Foreground="White"
-                    FontSize="14"
-                    FontWeight="Bold"
-                    BorderBrush="Transparent"
-                    BorderThickness="0"
-                    CornerRadius="5">
-                <Button.Styles>
-                    <Style Selector="Button:pointerover">
-                        <Setter Property="Background" Value="#3AA8B2"/> 
-                    </Style>
-                </Button.Styles>
-            </Button>
+            <Button Classes="wide" Margin="0,12,0,0"
+                    Content="Zaloguj się"
+                    Click="Login" />
+
+            <TextBlock HorizontalAlignment="Center">Albo</TextBlock>
+
+            <Button Classes="secondary" HorizontalAlignment="Center"
+                    Content="Zarejestruj się"
+                    Click="GoRegister" />
         </StackPanel>
     </Border>
 </UserControl>

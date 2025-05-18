@@ -1,13 +1,19 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Interactivity;
+using VamaDesktop.ViewModels;
 
 namespace VamaDesktop.Views;
 
-public partial class RegisterView : UserControl
+public partial class RegisterView : ViewControl<RegisterViewModel>
 {
-    public RegisterView()
+    public RegisterView() => InitializeComponent();
+
+    private void GoLogin(object? sender, RoutedEventArgs e)
     {
-        InitializeComponent();
+        ViewModel.Router.GoTo<LoginViewModel>();
+    }
+
+    private void Register(object? sender, RoutedEventArgs e)
+    {
+        ViewModel.Register();
     }
 }

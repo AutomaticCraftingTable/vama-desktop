@@ -1,0 +1,25 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="24" Background="Aquamarine">
+            <StackPanel Width="1200" Spacing="20" Height="200">
+                <TextBox Watermark="Type something..."/>
+                <TextBox Watermark="Type password..."  PasswordChar="*">
+                    password
+                </TextBox>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+    <Style Selector="TextBox">
+        <Setter Property="Background" Value="{DynamicResource SecondaryColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextSecondaryColor}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryColor}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource AccentColor}" />
+        <Setter Property="SelectionForegroundBrush" Value="#FFFFFFFF" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextSecondaryColor}" />
+        
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Padding" Value="12,12" />
+        <Setter Property="CornerRadius" Value="4" />
+    </Style>
+</Styles>
