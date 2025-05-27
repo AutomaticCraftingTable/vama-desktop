@@ -16,25 +16,29 @@
                        FontSize="24"
                        FontWeight="Bold"
                        HorizontalAlignment="Center" />
-
-            <controls:ErrorWrapper Message="{Binding Error.Email}">
-                <TextBox Watermark="Email" />
+            
+            <controls:ErrorWrapper Message="{Binding RegisterError.Errors.Email[0]}">
+                <TextBox Watermark="Email"
+                         Text="{Binding Credentials.Email, Mode=TwoWay}" />
             </controls:ErrorWrapper>
-
-            <controls:ErrorWrapper Message="{Binding Error.Password}">
+            
+            <controls:ErrorWrapper Message="{Binding RegisterError.Errors.Password[0]}">
                 <TextBox Watermark="Hasło"
-                         PasswordChar="*" />
+                         PasswordChar="*"
+                         Text="{Binding Credentials.Password, Mode=TwoWay}" />
             </controls:ErrorWrapper>
-
-            <controls:ErrorWrapper Message="{Binding Error.Regulations}">
+            
+            <controls:ErrorWrapper Message="{Binding Regulations}">
                 <CheckBox Content="Zaznaczając, akceptuję regulamin i politykę prywatności"
                           IsChecked="{Binding RegulationsAccepted, Mode=TwoWay}" />
             </controls:ErrorWrapper>
 
-            <Button Classes="wide" Content="Zarejestruj się"
+            <Button Classes="wide"
+                    Content="Zarejestruj się"
                     Click="Register" />
             <TextBlock HorizontalAlignment="Center">Albo</TextBlock>
-            <Button Classes="secondary" HorizontalAlignment="Center"
+            <Button Classes="secondary"
+                    HorizontalAlignment="Center"
                     Content="Zaloguj się"
                     Click="GoLogin" />
         </StackPanel>

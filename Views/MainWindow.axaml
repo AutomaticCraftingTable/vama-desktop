@@ -11,20 +11,5 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="VamaDesktop"
         x:DataType="vm:MainViewModel">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        
-        <Grid Grid.Column="0">
-            <controls:Sidebar IsVisible="{Binding IsLoggedIn}" />
-        </Grid>
-
-        <Grid Grid.Column="1">
-            <ScrollViewer>
-                <ContentControl Content="{Binding Content}" />
-            </ScrollViewer>
-        </Grid>
-    </Grid>
+    <ContentControl Content="{Binding Content}" />
 </Window>

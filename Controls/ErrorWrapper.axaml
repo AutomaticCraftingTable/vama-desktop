@@ -20,19 +20,17 @@
     <Style Selector="controls|ErrorWrapper">
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid>
-                    <StackPanel Spacing="2">
-                        <Border BorderThickness="{TemplateBinding IsErrorVisible, Converter={x:Static controls:BoolToThicknessConverter.Instance}}"
-                                CornerRadius="4"
-                                BorderBrush="{DynamicResource TextFailureBrush}">
-                            <ContentPresenter Content="{TemplateBinding Content}" />
-                        </Border>
-                        <TextBlock Foreground="{DynamicResource TextFailureBrush}"
-                                   FontWeight="Medium"
-                                   IsVisible="{TemplateBinding IsErrorVisible}"
-                                   Text="{TemplateBinding Message}" />
-                    </StackPanel>
-                </Grid>
+                <StackPanel Spacing="2">
+                    <Border BorderThickness="{TemplateBinding IsErrorVisible, Converter={x:Static controls:BoolToThicknessConverter.Instance}}"
+                            CornerRadius="4"
+                            BorderBrush="{DynamicResource TextFailureBrush}">
+                        <ContentPresenter Content="{TemplateBinding Content}" />
+                    </Border>
+                    <TextBlock Foreground="{DynamicResource TextFailureBrush}"
+                               FontWeight="Medium"
+                               IsVisible="{TemplateBinding IsErrorVisible}"
+                               Text="{TemplateBinding Message}" />
+                </StackPanel>
             </ControlTemplate>
         </Setter>
     </Style>

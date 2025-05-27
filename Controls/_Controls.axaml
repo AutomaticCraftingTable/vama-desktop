@@ -9,5 +9,4 @@
         </Border>
     </Design.PreviewWith>
     <StyleInclude Source="ErrorWrapper.axaml" />
-    <StyleInclude Source="Sidebar.axaml" />
 </Styles>

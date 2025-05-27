@@ -1,4 +1,5 @@
 using System;
+using Akavache;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -7,6 +8,7 @@ using DotNetEnv;
 using Flurl.Http;
 using Microsoft.Extensions.DependencyInjection;
 using VamaDesktop.API;
+using VamaDesktop.Controls;
 using VamaDesktop.ViewModels;
 using VamaDesktop.Views;
 
@@ -37,6 +39,7 @@ public partial class App : Application
                 DataContext = mainViewModel
             };
         }
+        BlobCache.ApplicationName = "VamaDesktop";
 
         base.OnFrameworkInitializationCompleted();
     }
@@ -51,6 +54,7 @@ public partial class App : Application
         services.AddTransient<RegisterViewModel>();
         services.AddTransient<LoginViewModel>();
         services.AddTransient<AdminPanelViewModel>();
+        services.AddTransient<UsersViewModel>();
         return services.BuildServiceProvider();
     }
 }

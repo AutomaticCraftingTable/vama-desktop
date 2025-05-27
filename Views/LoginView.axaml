@@ -17,12 +17,14 @@
                        FontWeight="Bold"
                        HorizontalAlignment="Center" />
 
-            <controls:ErrorWrapper Message="{Binding Error.Email}">
-                <TextBox Watermark="Email" />
+            <controls:ErrorWrapper Message="{Binding LoginError.Errors.Email[0]}">
+                <TextBox Watermark="Email"
+                         Text="{Binding Credentials.Email, Mode=TwoWay}" />
             </controls:ErrorWrapper>
 
-            <controls:ErrorWrapper Message="{Binding Error.Password}">
-                <TextBox Watermark="Hasło" PasswordChar="*" />
+            <controls:ErrorWrapper Message="{Binding LoginError.Errors.Password[0]}">
+                <TextBox Watermark="Hasło" PasswordChar="*"
+                         Text="{Binding Credentials.Password, Mode=TwoWay}" />
             </controls:ErrorWrapper>
 
             <Button Classes="wide" Margin="0,12,0,0"

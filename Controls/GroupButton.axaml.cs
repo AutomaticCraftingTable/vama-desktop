@@ -1,21 +1,30 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 
 namespace VamaDesktop.Controls;
 
 public class GroupButton : Button
 {
-    public static readonly StyledProperty<bool> IsSelectedProperty = AvaloniaProperty.Register<GroupButton, bool>(
-        nameof(IsSelected));
-
-    public bool IsSelected
+    protected override void OnInitialized()
     {
-        get => GetValue(IsSelectedProperty);
-        set => SetValue(IsSelectedProperty, value);
+        Classes.Add(Id == SelectionId ? "current" : "secondary");
     }
-    protected override void OnClick()
+
+    public static readonly StyledProperty<int> IdProperty = AvaloniaProperty.Register<GroupButton, int>(nameof(Id));
+
+    public int Id
     {
-        base.OnClick();
+        get => GetValue(IdProperty);
+        set => SetValue(IdProperty, value);
+    }
+
+    public static readonly StyledProperty<int> SelectionIdProperty =
+        AvaloniaProperty.Register<GroupButton, int>(nameof(SelectionId));
+
+    public int SelectionId
+    {
+        get => GetValue(SelectionIdProperty);
+        set => SetValue(SelectionIdProperty, value);
     }
 }
