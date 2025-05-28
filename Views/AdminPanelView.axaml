@@ -4,23 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="using:VamaDesktop.ViewModels"
-             xmlns:views="clr-namespace:VamaDesktop.Views"
+             xmlns:layouts="clr-namespace:VamaDesktop.Layouts"
              x:DataType="vm:AdminPanelViewModel"
              x:Class="VamaDesktop.Views.AdminPanelView">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="0">
-            <views:SidebarView Index="-1" Router="{Binding Router}" />
-        </Grid>
-
-        <Grid Grid.Column="1">
-            <ScrollViewer>
-                ADMIN WHATEVER
-            </ScrollViewer>
-        </Grid>
-    </Grid>
+    <layouts:SidebarLayout Index="-1" Router="{Binding Router}">
+        <ScrollViewer>Manage your work in VAMA admin panel</ScrollViewer>
+    </layouts:SidebarLayout>
 </UserControl>

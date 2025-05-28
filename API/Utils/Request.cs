@@ -1,5 +1,7 @@
 using System;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
+using Akavache;
 using Flurl.Http;
 
 namespace VamaDesktop.API.Utils;
@@ -27,14 +29,12 @@ public class Request<TSuccess, TError>(Request<TSuccess, TError>.ResponseDefinit
         RaiseStart();
         try
         {
-            var result = await definition(new ApiClient());
+            string? token = await BlobCache.UserAccount.GetOrCreateObject("SESSION_TOKEN", () => "");
+            var result = await definition(new ApiClient(token));
             RaiseSuccess(result ?? new TSuccess());
         }
         catch (FlurlHttpException ex)
         {
-            var raw = await ex.Call.Response.ResponseMessage.Content.ReadAsStringAsync();
-            Console.WriteLine(raw);
-            
             var err = await ex.GetResponseJsonAsync<TError>();
             RaiseError(err ?? new TError());
         }

@@ -1,3 +1,4 @@
+using System.Reactive.Linq;
 using Akavache;
 using Avalonia.SimpleRouter;
 using Flurl.Http;
@@ -15,11 +16,11 @@ public class LoginViewModel(HistoryRouter<ViewModelBase> router) : ViewModelBase
 
     public void Login()
     {
-        var loginRequest = new Request<LoginResponse, CommonErrorRecord<LoginErrors>>(
+        var loginRequest = new Request<AuthResponse, CommonErrorRecord<LoginErrors>>(
             async client => await client
                 .Request("/api/auth/login")
                 .PostJsonAsync(Credentials)
-                .ReceiveJson<LoginResponse>()
+                .ReceiveJson<AuthResponse>()
         );
         loginRequest.OnStart += () => LoginError = new();
         loginRequest.OnSuccess += body =>

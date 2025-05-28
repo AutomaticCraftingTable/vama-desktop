@@ -1,4 +1,5 @@
 using System;
+using Akavache;
 using Avalonia.SimpleRouter;
 using Flurl.Http;
 using VamaDesktop.API.DTO.Errors;
@@ -17,19 +18,17 @@ public class RegisterViewModel(HistoryRouter<ViewModelBase> router) : ViewModelB
 
     public void Register()
     {
-        Console.WriteLine(Credentials);
-        var registerRequest = new Request<MessageResponse, CommonErrorRecord<RegisterError>>(
+        var registerRequest = new Request<AuthResponse, CommonErrorRecord<RegisterError>>(
             async client => await client
                 .Request("/api/auth/register")
-                // .BeforeCall(action => action.Request.SetQueryParams("apidogResponseId","23668515"))
-                .BeforeCall(call => Console.WriteLine(call.RequestBody?.ToString()))
                 .PostJsonAsync(Credentials)
-                .ReceiveJson<MessageResponse>()
+                .ReceiveJson<AuthResponse>()
         );
         registerRequest.OnStart += () => RegisterError = new();
         registerRequest.OnError += error => RegisterError = error;
-        registerRequest.OnSuccess += _ =>
+        registerRequest.OnSuccess += body =>
         {
+            BlobCache.UserAccount.InsertObject("SESSION_TOKEN", body.Token);
             Router.GoTo<AdminPanelViewModel>();
         };
         registerRequest.OnFinish += () =>

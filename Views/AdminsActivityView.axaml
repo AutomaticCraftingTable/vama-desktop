@@ -2,14 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:VamaDesktop.ViewModels"
              xmlns:layouts="clr-namespace:VamaDesktop.Layouts"
+             xmlns:vm="clr-namespace:VamaDesktop.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="VamaDesktop.Views.UsersView"
-             x:DataType="vm:UsersViewModel">
-    <layouts:SidebarLayout Index="0" Router="{Binding Router}">
+             x:Class="VamaDesktop.Views.AdminsActivityView"
+             x:DataType="vm:AdminsActivityViewModel">
+    <layouts:SidebarLayout Index="7" Router="{Binding Router}">
         <ScrollViewer>
-            USERS
+            AdminsActivity
         </ScrollViewer>
     </layouts:SidebarLayout>
 </UserControl>

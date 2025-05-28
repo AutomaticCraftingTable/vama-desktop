@@ -1,0 +1,73 @@
+<ContentControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:controls="clr-namespace:VamaDesktop.Controls"
+                xmlns:layouts="clr-namespace:VamaDesktop.Layouts"
+                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                x:Class="VamaDesktop.Layouts.SidebarLayout">
+    <ContentControl.Template>
+        <ControlTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ScrollViewer Grid.Column="0">
+                    <Border HorizontalAlignment="Left" Classes="normal" Background="{DynamicResource SecondaryColor}">
+                        <StackPanel Classes="normal" Spacing="12">
+                            <Label Classes="dimmed">Zarządzanie</Label>
+                            <controls:GroupButton Click="GoUsers"
+                                                  Id="0"
+                                                  SelectionId="{Binding Index,
+                                        RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
+                                                  Content="Użytkownicy" />
+                            <controls:GroupButton Click="GoModerators"
+                                                  Id="1"
+                                                  SelectionId="{Binding Index,
+                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
+                                                  Content="Moderatorzy" />
+                            <controls:GroupButton Click="GoNotes"
+                                                  Id="2"
+                                                  SelectionId="{Binding Index,
+                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
+                                                  Content="Notatki" />
+                            <controls:GroupButton Click="GoReportAuthor"
+                                                  Id="3"
+                                                  SelectionId="{Binding Index,
+                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
+                                                  Content="Zgłoszeni autorzy" />
+                            <controls:GroupButton Click="GoReportArticle"
+                                                  Id="4"
+                                                  SelectionId="{Binding Index,
+                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
+                                                  Content="Zgłoszone artykuły" />
+                            <controls:GroupButton Click="GoReportComment"
+                                                  Id="5"
+                                                  SelectionId="{Binding Index,
+                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
+                                                  Content="Zgłoszone komentarze" />
+                            <controls:GroupButton Click="GoOwnActivity"
+                                                  Id="6"
+                                                  SelectionId="{Binding Index,
+                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
+                                                  Content="Aktywność" />
+                            <Label Classes="dimmed">Super zarządzanie</Label>
+                            <controls:GroupButton Click="GoAdminsActivity"
+                                                  Id="7"
+                                                  SelectionId="{Binding Index,
+                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
+                                                  Content="Aktywność administratorów" />
+                            <Label Classes="dimmed">Sesja</Label>
+                            <controls:GroupButton Click="Logout" Classes="secondary" Content="Wyloguj się" />
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+                <StackPanel Grid.Column="1">
+                    <ContentPresenter Content="{TemplateBinding Content}" />
+                </StackPanel>
+            </Grid>
+        </ControlTemplate>
+    </ContentControl.Template>
+</ContentControl>

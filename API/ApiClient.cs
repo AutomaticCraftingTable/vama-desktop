@@ -1,24 +1,35 @@
+using System;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using DotNetEnv;
 using Flurl.Http;
 using Akavache;
+using VamaDesktop.Utils;
+using ConsoleColor = VamaDesktop.Utils.ConsoleColor;
 
 namespace VamaDesktop.API;
 
 public class ApiClient : FlurlClient
 {
-    public ApiClient()
+    public ApiClient(string? sessionToken)
     {
         Env.Load();
         BaseUrl = Env.GetString("BASE_URL");
         Headers.Add("Accept", $"application/json");
         Headers.Add("Content-Type", $"application/json");
-        LoadToken();
-    }
+        Headers.Add("Authorization", $"Bearer {sessionToken}");
 
-    async void LoadToken()
-    {
-        string? token = await BlobCache.UserAccount.GetOrCreateObject("SESSION_TOKEN", () => "");
-        Headers.Add("Authorization", $"Bearer {token}");
+        this.AfterCall(call =>
+        {
+            ConsoleColor.Magenta.Print($"[{call.HttpRequestMessage.Method}] {call.Request.Url}");
+            Console.WriteLine("  Headers:");
+            foreach (var header in call.Request.Headers)
+                Console.WriteLine($"    {header.Name}: {string.Join(", ", header.Value)}");
+            if (call.RequestBody != null)
+                Console.WriteLine($"  Body: {call.RequestBody}");
+            ConsoleColor.Cyan.Print($"  Response: {call.Response.StatusCode}");
+            var body = call.Response.ResponseMessage.Content.ReadAsStringAsync().Result;
+            ConsoleColor.Yellow.Print($"  Body: {body}");
+        });
     }
 }

@@ -39,7 +39,6 @@ public partial class App : Application
                 DataContext = mainViewModel
             };
         }
-        BlobCache.ApplicationName = "VamaDesktop";
 
         base.OnFrameworkInitializationCompleted();
     }
@@ -55,6 +54,13 @@ public partial class App : Application
         services.AddTransient<LoginViewModel>();
         services.AddTransient<AdminPanelViewModel>();
         services.AddTransient<UsersViewModel>();
+        services.AddTransient<ModeratorsViewModel>();
+        services.AddTransient<NotesViewModel>();
+        services.AddTransient<ReportAuthorViewModel>();
+        services.AddTransient<ReportArticleViewModel>();
+        services.AddTransient<ReportCommentViewModel>();
+        services.AddTransient<OwnActivityViewModel>();
+        services.AddTransient<AdminsActivityViewModel>();
         return services.BuildServiceProvider();
     }
 }

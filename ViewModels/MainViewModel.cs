@@ -1,45 +1,40 @@
-﻿using Avalonia.SimpleRouter;
+﻿using System;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using Akavache;
+using Avalonia.SimpleRouter;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Flurl.Http;
+using VamaDesktop.API.DTO;
+using VamaDesktop.API.DTO.Errors;
 using VamaDesktop.API.Utils;
 
 namespace VamaDesktop.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-    [ObservableProperty]
-    private ViewModelBase _content = default!;
+    [ObservableProperty] private ViewModelBase _content = default!;
 
-    public MainViewModel(HistoryRouter<ViewModelBase> router): base(router)
+    private HistoryRouter<ViewModelBase> Router { get; init; }
+
+    public MainViewModel(HistoryRouter<ViewModelBase> router) : base(router)
     {
-        router.CurrentViewModelChanged += viewModel => Content = viewModel;
+        Content = new LoadingViewModel(router);
+        Router = router;
+        Router.CurrentViewModelChanged += viewModel => Content = viewModel;
         
-        // TODO: remove
-        router.GoTo<AdminPanelViewModel>();
-        return;
-        //
-        bool isLoggedIn = VerifySession();
-        if (isLoggedIn)
-        {
-            router.GoTo<AdminPanelViewModel>();
-        }
-        else
-        {
-            router.GoTo<LoginViewModel>();
-        }
+        TryRecoverSession();
     }
-    
-    
-    bool VerifySession()
+
+    public async void TryRecoverSession()
     {
-        var verified = false;
         var requset = new Request<object, object>(
             async client => await client
-                .Request("/api/session")
+                .Request("/api/user")
                 .GetJsonAsync<object>()
         );
-        requset.OnSuccess += _ => verified = true;
-        requset.OnError += _ => verified = false;
-        return verified;
+        requset.OnSuccess += _ => Router.GoTo<AdminPanelViewModel>();
+        requset.OnError += _ => Router.GoTo<LoginViewModel>();
+        requset.Invoke();
     }
 }

@@ -1,3 +1,3 @@
 namespace VamaDesktop.API.DTO.Errors;
 
-public record MessageError(string Message = "");
+public record MessageError : CommonErrorRecord<object?>;

@@ -6,7 +6,7 @@ public record User
     public required string Email { get; init; }
 }
 
-public record LoginResponse
+public record AuthResponse
 {
     public User User { get; init; }
     public string Token { get; init; }

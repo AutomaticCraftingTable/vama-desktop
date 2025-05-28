@@ -11,7 +11,7 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
         <StackPanel Spacing="24">
-            <Svg Width="160" Path="avares://VamaDesktop/Assets/vama.svg" />
+            <Svg Width="160" Path="{DynamicResource LogoPath}" />
             <TextBlock Text="Witamy w panelu VAMA"
                        FontSize="24"
                        FontWeight="Bold"
