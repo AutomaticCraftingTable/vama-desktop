@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:layouts="clr-namespace:VamaDesktop.Layouts"
+             xmlns:vm="clr-namespace:VamaDesktop.ViewModels"
+             xmlns:il="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             xmlns:views="clr-namespace:VamaDesktop.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="VamaDesktop.Views.ProfilesView"
+             x:DataType="vm:ProfilesViewModel">
+    <layouts:SidebarLayout Index="0" Router="{Binding Router}">
+        <ScrollViewer Padding="24">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="100" Height="100" il:ImageLoader.Source="{Binding Profile.Logo, Mode=OneTime}" />
+                <StackPanel>
+                    <TextBlock Text="{Binding Profile.Nickname, Mode=OneTime}" />
+                    <TextBlock Text="{Binding Profile.Subscribers, Mode=OneTime}" />
+                    <TextBlock Text="{Binding Profile.Likes, Mode=OneTime}" />
+                    
+                    <ItemsRepeater ItemsSource="{Binding Profile.Comments, Mode=OneTime}">
+                        <ItemsRepeater.ItemTemplate>
+                            <DataTemplate>
+                                <views:CommentView />
+                            </DataTemplate>
+                        </ItemsRepeater.ItemTemplate>
+                        <ItemsRepeater.Layout>
+                            <StackLayout Orientation="Vertical" />
+                        </ItemsRepeater.Layout>
+                    </ItemsRepeater>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </layouts:SidebarLayout>
+</UserControl>

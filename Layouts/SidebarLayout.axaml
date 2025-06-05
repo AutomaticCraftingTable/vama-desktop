@@ -22,7 +22,7 @@
                                                   Id="0"
                                                   SelectionId="{Binding Index,
                                         RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
-                                                  Content="Użytkownicy" />
+                                                  Content="Profile" />
                             <controls:GroupButton Click="GoModerators"
                                                   Id="1"
                                                   SelectionId="{Binding Index,
@@ -64,9 +64,9 @@
                         </StackPanel>
                     </Border>
                 </ScrollViewer>
-                <StackPanel Grid.Column="1">
+                <Grid Grid.Column="1">
                     <ContentPresenter Content="{TemplateBinding Content}" />
-                </StackPanel>
+                </Grid>
             </Grid>
         </ControlTemplate>
     </ContentControl.Template>

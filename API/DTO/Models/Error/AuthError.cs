@@ -1,6 +1,6 @@
-namespace VamaDesktop.API.DTO.Errors;
+namespace VamaDesktop.API.DTO.Models.Error;
 
-public record LoginErrors
+public record AuthError
 {
     public string[] Email { get; init; } = [];
     public string[] Password { get; init; } = [];

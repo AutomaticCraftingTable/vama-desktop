@@ -1,39 +1,81 @@
-using System.Reactive.Linq;
-using Akavache;
+using System;
+using System.Diagnostics;
+using System.Threading;
 using Avalonia.SimpleRouter;
 using Flurl.Http;
-using VamaDesktop.API.DTO.Errors;
-using VamaDesktop.API.DTO.Requests;
-using VamaDesktop.API.DTO.Responses;
+using VamaDesktop.API;
+using VamaDesktop.API.DTO.Models.Body;
+using VamaDesktop.API.DTO.Models.Error;
+using VamaDesktop.API.DTO.Models.Success;
 using VamaDesktop.API.Utils;
+using VamaDesktop.Utils;
+using ConsoleColor = VamaDesktop.Utils.ConsoleColor;
 
 namespace VamaDesktop.ViewModels;
 
 public class LoginViewModel(HistoryRouter<ViewModelBase> router) : ViewModelBase(router)
 {
-    public LoginCredentialsRequest Credentials { get; } = new();
-    public CommonErrorRecord<LoginErrors> LoginError { get; set; } = new();
+    private Timer? timer;
+    public AuthCredentials Credentials { get; } = new();
+    public CommonErrorRecord<LoginError> LoginError { get; set; } = new();
 
-    public void Login()
+    public async void Login()
     {
-        var loginRequest = new Request<AuthResponse, CommonErrorRecord<LoginErrors>>(
-            async client => await client
-                .Request("/api/auth/login")
-                .PostJsonAsync(Credentials)
-                .ReceiveJson<AuthResponse>()
+        (_, LoginError) = await RequestClient<
+            AuthResponse,
+            CommonErrorRecord<LoginError>
+        >.Post(
+            "/api/auth/login",
+            Credentials,
+            onSuccess: body =>
+            {
+                SessionManager.SaveSession(body);
+                Router.GoTo<AdminPanelViewModel>();
+            }
         );
-        loginRequest.OnStart += () => LoginError = new();
-        loginRequest.OnSuccess += body =>
+        SetState();
+    }
+
+    public async void LoginGoogle()
+    {
+        var (oAuth, error) = await RequestClient<
+            InitGoogleLoginResponse,
+            MessageError
+        >.Get("/auth/google/init");
+        
+        LoginError = LoginError with
         {
-            BlobCache.UserAccount.InsertObject("SESSION_TOKEN", body.Token);
+            Message = error.Message
+        };
+
+        if (oAuth.Redirect_url == null) return;
+        Process.Start(new ProcessStartInfo(oAuth.Redirect_url) { UseShellExecute = true });
+
+        var googleLoginPollRequest = new RequestClient<GoogleLoginResponse, MessageError>(
+            async client => await client
+                .Request($"/auth/google/wait/{oAuth.State}")
+                .GetJsonAsync<GoogleLoginResponse>()
+        );
+
+        googleLoginPollRequest.OnSuccess += body =>
+        {
+            if (body?.Status == "waiting") return;
+            Console.WriteLine(body?.Token);
+            SessionManager.SaveSession(new AuthResponse()
+            {
+                Token = body?.Token,
+                User = body?.User,
+            });
+            timer?.Dispose();
             Router.GoTo<AdminPanelViewModel>();
         };
-        loginRequest.OnError += error =>
+        googleLoginPollRequest.OnError += body =>
         {
-            LoginError = error;
-            OnPropertyChanged(nameof(LoginError));
+            LoginError = new() { Message = body.Message };
+            timer?.Dispose();
         };
+        googleLoginPollRequest.OnFinish += SetState;
 
-        loginRequest.Invoke();
+        timer = new Timer(async _ => await googleLoginPollRequest.Invoke(), null, 0, 1000);
     }
 }

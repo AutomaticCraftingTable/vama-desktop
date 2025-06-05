@@ -8,6 +8,19 @@
              x:DataType="vm:AdminPanelViewModel"
              x:Class="VamaDesktop.Views.AdminPanelView">
     <layouts:SidebarLayout Index="-1" Router="{Binding Router}">
-        <ScrollViewer>Manage your work in VAMA admin panel</ScrollViewer>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="24">
+            <Svg Width="160" Path="{DynamicResource LogoPath}" />
+            <StackPanel Spacing="12">
+                <TextBlock Text="Panel Administratora"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center" />
+                <TextBlock Text="Wybierz moduł do zarządzania"
+                           FontSize="16"
+                           Foreground="{DynamicResource TextSecondaryBrush}"
+                           FontWeight="Regular"
+                           HorizontalAlignment="Center" />
+            </StackPanel>
+        </StackPanel>
     </layouts:SidebarLayout>
 </UserControl>

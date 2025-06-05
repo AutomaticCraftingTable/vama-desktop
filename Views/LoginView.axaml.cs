@@ -16,4 +16,9 @@ public partial class LoginView : ViewControl<LoginViewModel>
     {
         ViewModel.Login();
     }
+
+    private void LoginGoogle(object? sender, RoutedEventArgs e)
+    {
+        ViewModel.LoginGoogle();
+    }
 }

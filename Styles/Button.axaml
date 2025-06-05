@@ -13,6 +13,14 @@
         <Style Selector="^:pointerover" >
             <Setter Property="Background" Value="{DynamicResource PrimaryHoverBrush}" />
         </Style>
+        <Style Selector="^.text">
+            <Setter Property="Background" Value="{StaticResource TransparentColor}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            <Setter Property="Padding" Value="0" />
+            <Style Selector="^:pressed /template/ ContentPresenter" >
+                <Setter Property="Background" Value="{StaticResource TransparentColor}" />
+            </Style>
+        </Style>
         <Style Selector="^.wide">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
         </Style>

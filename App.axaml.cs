@@ -18,6 +18,7 @@ public partial class App : Application
 {
     public override void Initialize()
     {
+        SessionManager.Init();
         AvaloniaXamlLoader.Load(this);
     }
 
@@ -53,7 +54,7 @@ public partial class App : Application
         services.AddTransient<RegisterViewModel>();
         services.AddTransient<LoginViewModel>();
         services.AddTransient<AdminPanelViewModel>();
-        services.AddTransient<UsersViewModel>();
+        services.AddTransient<ProfilesViewModel>();
         services.AddTransient<ModeratorsViewModel>();
         services.AddTransient<NotesViewModel>();
         services.AddTransient<ReportAuthorViewModel>();

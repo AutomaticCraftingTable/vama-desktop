@@ -1,6 +1,6 @@
-namespace VamaDesktop.API.DTO.Errors;
+namespace VamaDesktop.API.DTO.Models.Error;
 
-public record RegisterError
+public record LoginError
 {
     public string[] Email { get; init; } = [];
     public string[] Password { get; init; } = [];

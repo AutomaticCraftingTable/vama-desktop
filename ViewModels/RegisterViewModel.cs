@@ -1,24 +1,28 @@
 using System;
+using System.Diagnostics;
+using System.Threading;
 using Akavache;
 using Avalonia.SimpleRouter;
 using Flurl.Http;
-using VamaDesktop.API.DTO.Errors;
-using VamaDesktop.API.DTO.Requests;
-using VamaDesktop.API.DTO.Responses;
+using VamaDesktop.API;
+using VamaDesktop.API.DTO.Models.Body;
+using VamaDesktop.API.DTO.Models.Error;
+using VamaDesktop.API.DTO.Models.Success;
 using VamaDesktop.API.Utils;
 
 namespace VamaDesktop.ViewModels;
 
 public class RegisterViewModel(HistoryRouter<ViewModelBase> router) : ViewModelBase(router)
 {
-    public RegisterCredentialsRequest Credentials { get; set; } = new();
-    public CommonErrorRecord<RegisterError> RegisterError { get; set; } = new();
+    private Timer? timer;
+    public AuthCredentials Credentials { get; set; } = new();
+    public CommonErrorRecord<AuthError> RegisterError { get; set; } = new();
     public string Regulations { get; set; } = string.Empty;
     public bool RegulationsAccepted { get; set; }
 
     public void Register()
     {
-        var registerRequest = new Request<AuthResponse, CommonErrorRecord<RegisterError>>(
+        var registerRequest = new RequestClient<AuthResponse, CommonErrorRecord<AuthError>>(
             async client => await client
                 .Request("/api/auth/register")
                 .PostJsonAsync(Credentials)
@@ -28,13 +32,11 @@ public class RegisterViewModel(HistoryRouter<ViewModelBase> router) : ViewModelB
         registerRequest.OnError += error => RegisterError = error;
         registerRequest.OnSuccess += body =>
         {
-            BlobCache.UserAccount.InsertObject("SESSION_TOKEN", body.Token);
+            // BlobCache.UserAccount.InsertObject("SESSION_TOKEN", body.Token);
+            SessionManager.SaveSession(body);
             Router.GoTo<AdminPanelViewModel>();
         };
-        registerRequest.OnFinish += () =>
-        {
-            OnPropertyChanged(nameof(RegisterError));
-        };
+        registerRequest.OnFinish += SetState;
         if (RegulationsAccepted) 
         {
             registerRequest.Invoke();
@@ -42,7 +44,50 @@ public class RegisterViewModel(HistoryRouter<ViewModelBase> router) : ViewModelB
         else
         {
             Regulations = RegulationsAccepted ? string.Empty : "Warunki nie byli zaakceptowane";
-            OnPropertyChanged(nameof(Regulations));
+            SetState();
         }
+    }
+
+    public async void RegisterGoogle()
+    {
+        var (oAuth, error) = await RequestClient<
+            InitGoogleLoginResponse,
+            MessageError
+        >.Get("/auth/google/init");
+        
+        RegisterError = RegisterError with
+        {
+            Message = error.Message
+        };
+
+        if (oAuth.Redirect_url == null) return;
+        Process.Start(new ProcessStartInfo(oAuth.Redirect_url) { UseShellExecute = true });
+
+        var googleLoginPollRequest = new RequestClient<GoogleLoginResponse, MessageError>(
+            async client => await client
+                .Request($"/auth/google/wait/{oAuth.State}")
+                .GetJsonAsync<GoogleLoginResponse>()
+        );
+
+        googleLoginPollRequest.OnSuccess += body =>
+        {
+            if (body?.Status == "waiting") return;
+            Console.WriteLine(body?.Token);
+            SessionManager.SaveSession(new AuthResponse()
+            {
+                Token = body?.Token,
+                User = body?.User,
+            });
+            timer?.Dispose();
+            Router.GoTo<AdminPanelViewModel>();
+        };
+        googleLoginPollRequest.OnError += body =>
+        {
+            RegisterError = new() { Message = body.Message };
+            timer?.Dispose();
+        };
+        googleLoginPollRequest.OnFinish += SetState;
+
+        timer = new Timer(async _ => await googleLoginPollRequest.Invoke(), null, 0, 1000);
     }
 }

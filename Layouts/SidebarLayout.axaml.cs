@@ -5,7 +5,8 @@ using Avalonia.Interactivity;
 using Avalonia.SimpleRouter;
 using Flurl.Http;
 using VamaDesktop.API.DTO;
-using VamaDesktop.API.DTO.Errors;
+using VamaDesktop.API.DTO.Models.Error;
+using VamaDesktop.API.DTO.Models.Success;
 using VamaDesktop.API.Utils;
 using VamaDesktop.ViewModels;
 
@@ -35,12 +36,12 @@ public partial class SidebarLayout : ContentControl
 
     private void GoUsers(object? sender, RoutedEventArgs e)
     {
-        Router.GoTo<UsersViewModel>();
+        Router.GoTo<ProfilesViewModel>();
     }
 
     private void Logout(object? sender, RoutedEventArgs e)
     {
-        var request = new Request<MessageResponse, MessageError>(
+        var request = new RequestClient<MessageResponse, MessageError>(
             async client => await client
                 .Request("/api/auth/logout")
                 .PostAsync()
