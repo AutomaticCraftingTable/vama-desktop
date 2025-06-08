@@ -13,8 +13,13 @@
                 <Button.Flyout>
                     <Flyout>
                         <StackPanel Spacing="8">
-                            <Button Click="ReportComment" Classes="current slim" Content="Zgłoś komentarz" />
-                            <Button Click="BanComment" Classes="current slim" Content="Zablokuj komentarz" />
+                            <ItemsControl Items="{Binding Items, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Content="{Binding Content}" Command="{Binding Click}" Classes="current slim" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </StackPanel>
                     </Flyout>
                 </Button.Flyout>

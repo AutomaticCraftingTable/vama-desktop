@@ -72,4 +72,8 @@
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\TestComponentNesting\Parent.axaml" />
+  </ItemGroup>
 </Project>
