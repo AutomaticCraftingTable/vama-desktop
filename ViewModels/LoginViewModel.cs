@@ -13,7 +13,7 @@ using ConsoleColor = VamaDesktop.Utils.ConsoleColor;
 
 namespace VamaDesktop.ViewModels;
 
-public class LoginViewModel(HistoryRouter<ViewModelBase> router) : ViewModelBase(router)
+public class LoginViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBase(router)
 {
     private Timer? timer;
     public AuthCredentials Credentials { get; } = new();

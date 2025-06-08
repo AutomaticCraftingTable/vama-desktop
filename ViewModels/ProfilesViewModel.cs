@@ -4,7 +4,7 @@ using VamaDesktop.API.DTO.Models;
 
 namespace VamaDesktop.ViewModels;
 
-public class ProfilesViewModel(HistoryRouter<ViewModelBase> router) : ViewModelBase(router)
+public class ProfilesViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBase(router)
 {
     public ViewProfile Profile { get; set; } = new()
     {

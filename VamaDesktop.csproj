@@ -67,5 +67,9 @@
       <DependentUpon>AdminsActivityView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Components\CommentView.axaml.cs">
+      <DependentUpon>CommentView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

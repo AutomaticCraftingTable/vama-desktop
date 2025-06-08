@@ -5,6 +5,6 @@ using VamaDesktop.API.Utils;
 
 namespace VamaDesktop.ViewModels;
 
-public class NotesViewModel(HistoryRouter<ViewModelBase> router) : ViewModelBase(router)
+public class NotesViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBase(router)
 {
 }

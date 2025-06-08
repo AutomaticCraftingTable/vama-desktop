@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="VamaDesktop.Views.Components.CommentView">
+    <Border Padding="24"
+            Background="{DynamicResource SecondaryBrush}">
+        <Grid ColumnDefinitions="*,Auto">
+            <TextBlock Grid.Column="0" Text="Content" />
+
+            <Button Grid.Column="1" Classes="text" Content="⋮">
+                <Button.Flyout>
+                    <Flyout>
+                        <StackPanel Spacing="8">
+                            <Button Click="ReportComment" Classes="current slim" Content="Zgłoś komentarz" />
+                            <Button Click="BanComment" Classes="current slim" Content="Zablokuj komentarz" />
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

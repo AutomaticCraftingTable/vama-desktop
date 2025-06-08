@@ -10,7 +10,7 @@ using VamaDesktop.API.Utils;
 
 namespace VamaDesktop.ViewModels;
 
-public partial class MainViewModel : ViewModelBase
+public partial class MainViewModel : RoutedModelBase
 {
     [ObservableProperty] private ViewModelBase _content = default!;
 
@@ -20,8 +20,8 @@ public partial class MainViewModel : ViewModelBase
         Content = new LoadingViewModel(router);
         Router.CurrentViewModelChanged += viewModel => Content = viewModel;
      
-        // Router.GoTo<ProfilesViewModel>();
-        TryRecoverSession();
+        Router.GoTo<ProfilesViewModel>();
+        // TryRecoverSession();
     }
 
     public void TryRecoverSession()

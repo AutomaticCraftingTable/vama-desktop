@@ -12,7 +12,7 @@ using VamaDesktop.API.Utils;
 
 namespace VamaDesktop.ViewModels;
 
-public class RegisterViewModel(HistoryRouter<ViewModelBase> router) : ViewModelBase(router)
+public class RegisterViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBase(router)
 {
     private Timer? timer;
     public AuthCredentials Credentials { get; set; } = new();
