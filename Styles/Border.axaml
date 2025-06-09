@@ -2,8 +2,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style Selector="Border">
         <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryBrush}" />
         <Style Selector="^.normal">
             <Setter Property="Padding" Value="24" />
+        </Style>
+        <Style Selector="^.wrapper">
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="CornerRadius" Value="12" />
+        </Style>
+        <Style Selector="^.roundClip">
+            <Setter Property="CornerRadius" Value="1000" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="ClipToBounds" Value="True" />
         </Style>
     </Style>
 </Styles>

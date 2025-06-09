@@ -36,6 +36,7 @@
     <None Include=".env">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <PackageReference Include="SpacedGrid-Avalonia" Version="11.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,9 +68,20 @@
       <DependentUpon>AdminsActivityView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Components\CommentView.axaml.cs">
+    <Compile Update="Views\Components\Box.axaml.cs">
       <DependentUpon>CommentView.axaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProfileComponents\ProfileCard.axaml.cs">
+      <DependentUpon>Profile.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProfileComponents\ArticlesSubsection.axaml.cs">
+      <DependentUpon>ArticlesSubsection.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProfileComponents\CommentComponent.axaml.cs">
+      <DependentUpon>ItemComponent.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

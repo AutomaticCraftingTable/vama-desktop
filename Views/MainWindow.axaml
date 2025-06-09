@@ -6,6 +6,8 @@
         xmlns:rxui="http://reactiveui.net"
         xmlns:controls="using:VamaDesktop.Controls"
         xmlns:views="clr-namespace:VamaDesktop.Views"
+        xmlns:components="clr-namespace:VamaDesktop.Views.Components"
+        xmlns:profileComponents="clr-namespace:VamaDesktop.Views.ProfileComponents"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="VamaDesktop.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"

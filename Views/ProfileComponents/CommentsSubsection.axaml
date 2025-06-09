@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:profileComponents="clr-namespace:VamaDesktop.Views.ProfileComponents"
+             x:Class="VamaDesktop.Views.ProfileComponents.CommentsSubsection"
+             x:CompileBindings="False"
+             x:Name="Self">
+    <ItemsRepeater ItemsSource="{Binding #Self.Comments}">
+        <ItemsRepeater.ItemTemplate>
+            <DataTemplate>
+                <profileComponents:CommentComponent
+                    Id="{Binding Id}"
+                    Text="{Binding Content}" />
+            </DataTemplate>
+        </ItemsRepeater.ItemTemplate>
+
+        <ItemsRepeater.Layout>
+            <StackLayout Spacing="16" />
+        </ItemsRepeater.Layout>
+    </ItemsRepeater>
+</UserControl>

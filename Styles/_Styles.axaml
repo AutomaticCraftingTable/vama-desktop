@@ -22,6 +22,7 @@
     <StyleInclude Source="Label.axaml" />
     <StyleInclude Source="TextBlock.axaml" />
     <StyleInclude Source="Flyout.axaml" />
+    <StyleInclude Source="TabControl.axaml" />
 
     <Style Selector=":is(TemplatedControl) /template/ ContentPresenter">
         <Setter Property="Transitions">

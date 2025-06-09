@@ -82,7 +82,7 @@
             <SolidColorBrush x:Key="ThemeControlHighBrush" Color="{DynamicResource PrimaryPressedColor}" />
             <SolidColorBrush x:Key="ThemeControlVeryHighBrush" Color="{DynamicResource PrimaryPressedColor}" />
             <SolidColorBrush x:Key="ThemeControlHighlightLowBrush" Color="#FFFF0000" />
-            <SolidColorBrush x:Key="ThemeControlHighlightMidBrush" Color="#FFFF0000" />
+            <SolidColorBrush x:Key="ThemeControlHighlightMidBrush" Color="{DynamicResource SecondaryHoverColor}" />
             <SolidColorBrush x:Key="ThemeControlHighlightHighBrush" Color="#FFFF0000" />
             <SolidColorBrush x:Key="ThemeForegroundBrush" Color="{DynamicResource TextColor}" />
             <SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource TextPrimaryColor}" />

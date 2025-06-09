@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace VamaDesktop.API.DTO.Base;
 
-public record Account
+public record AccountData
 {
     public int? Id { get; init; }
     public string? Email { get; init; }
