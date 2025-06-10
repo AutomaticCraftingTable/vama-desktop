@@ -10,5 +10,6 @@ public partial class ProfilesView : UserControl
     public ProfilesView()
     {
         InitializeComponent();
+        
     }
 }

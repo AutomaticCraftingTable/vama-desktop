@@ -34,14 +34,24 @@ public class LoginViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBa
         //     }
         // );
 
-        var requestActions = new RequestActions<AuthResponse?, CommonErrorRecord<LoginError>?>();
-        requestActions.OnSuccess += body =>
+        // var requestActions = new RequestActions<AuthResponse?, CommonErrorRecord<LoginError>?>();
+        // requestActions.OnSuccess += body =>
+        // {
+        //     SessionManager.SaveSession(body);
+        //     Router.GoTo<AdminPanelViewModel>();
+        // };
+        //
+        // (_, LoginError) = await CreateRequest.Login(Credentials, requestActions);
+        
+        
+        var r = CreateRequest.Login(Credentials);
+        r.Actions.OnSuccess += body =>
         {
             SessionManager.SaveSession(body);
             Router.GoTo<AdminPanelViewModel>();
         };
-
-        (_, LoginError) = await TheoryRequests.Login(Credentials, requestActions);
+        
+        (_, LoginError) = await Theory.Request(r);
 
         SetState();
     }

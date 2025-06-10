@@ -9,16 +9,14 @@ namespace VamaDesktop.API.Utils;
 
 public static class Theory
 {
-    public static async Task<(TSuccessBody?, TErrorBody?)> Request<TRequestBody, TSuccessBody, TErrorBody>(
-        RequestPayload payload,
-        RequestActions<TSuccessBody?, TErrorBody?> actions,
-        TRequestBody? requestBody
-    ) where TSuccessBody : class?, new() where TErrorBody : class?, new()
+    public static async Task<(TSuccessBody?, TErrorBody?)> Request<TSuccessBody, TErrorBody, TRequestBody>(
+        RequestPayload<TSuccessBody, TErrorBody, TRequestBody> payload
+    ) where TSuccessBody : class?, new() where TErrorBody : class?, new() where TRequestBody : class?
     {
         TSuccessBody? successBody = null;
         TErrorBody? errorBody = null;
 
-        actions.RaiseStart();
+        payload.Actions.RaiseStart();
 
         try
         {
@@ -27,9 +25,9 @@ public static class Theory
                 .Request(payload.Url)
                 .SetQueryParams(payload.QueryParams)
                 .WithHeaders(payload.Headers)
-                .SendJsonAsync(payload.Method, requestBody)
+                .SendJsonAsync(payload.Method, payload.Body)
                 .ReceiveJson<TSuccessBody>();
-            actions.RaiseSuccess(successBody);
+            payload.Actions.RaiseSuccess(successBody);
         }
 
         catch (FlurlParsingException)
@@ -56,24 +54,33 @@ public static class Theory
         catch (FlurlHttpException ex)
         {
             errorBody = await ex.GetResponseJsonAsync<TErrorBody>();
-            actions.RaiseError(errorBody);
+            payload.Actions.RaiseError(errorBody);
         }
 
         finally
         {
-            actions.RaiseFinish();
+            payload.Actions.RaiseFinish();
         }
 
         return (successBody, errorBody);
     }
 }
 
-public struct RequestPayload
+public class RequestPayload<TSuccessBody, TErrorBody, TBody>(
+    HttpMethod method,
+    string url,
+    TBody? body = null,
+    Dictionary<string, string>? queryParams = null,
+    Dictionary<string, string>? headers = null
+)
+    where TBody : class?
 {
-    public string Url { get; set; }
-    public HttpMethod Method { get; set; }
-    public Dictionary<string, string> QueryParams { get; set; }
-    public Dictionary<string, string> Headers { get; set; }
+    public string Url => url;
+    public HttpMethod Method => method;
+    public TBody? Body => body;
+    public Dictionary<string, string>? QueryParams => queryParams;
+    public Dictionary<string, string>? Headers => headers;
+    public RequestActions<TSuccessBody, TErrorBody> Actions { get; } = new();
 }
 
 public class RequestActions<TSuccessBody, TErrorBody>
