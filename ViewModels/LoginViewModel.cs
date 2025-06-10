@@ -1,6 +1,8 @@
 using System;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using Avalonia.SimpleRouter;
 using Flurl.Http;
 using VamaDesktop.API;
@@ -8,31 +10,39 @@ using VamaDesktop.API.DTO.Models.Body;
 using VamaDesktop.API.DTO.Models.Error;
 using VamaDesktop.API.DTO.Models.Success;
 using VamaDesktop.API.Utils;
-using VamaDesktop.Utils;
-using ConsoleColor = VamaDesktop.Utils.ConsoleColor;
 
 namespace VamaDesktop.ViewModels;
 
 public class LoginViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBase(router)
 {
-    private Timer? timer;
-    public AuthCredentials Credentials { get; } = new();
-    public CommonErrorRecord<LoginError> LoginError { get; set; } = new();
+    private Timer? _timer;
+    public AuthCredentials Credentials { get; } = new AuthCredentials();
+    public CommonErrorRecord<LoginError>? LoginError { get; set; }
 
     public async void Login()
     {
-        (_, LoginError) = await RequestClient<
-            AuthResponse,
-            CommonErrorRecord<LoginError>
-        >.Post(
-            "/api/auth/login",
-            Credentials,
-            onSuccess: body =>
-            {
-                SessionManager.SaveSession(body);
-                Router.GoTo<AdminPanelViewModel>();
-            }
-        );
+        // (_, LoginError) = await RequestClient<
+        //     AuthResponse,
+        //     CommonErrorRecord<LoginError>
+        // >.Post(
+        //     "/api/auth/login",
+        //     Credentials,
+        //     onSuccess: body =>
+        //     {
+        //         SessionManager.SaveSession(body);
+        //         Router.GoTo<AdminPanelViewModel>();
+        //     }
+        // );
+
+        var requestActions = new RequestActions<AuthResponse?, CommonErrorRecord<LoginError>?>();
+        requestActions.OnSuccess += body =>
+        {
+            SessionManager.SaveSession(body);
+            Router.GoTo<AdminPanelViewModel>();
+        };
+
+        (_, LoginError) = await TheoryRequests.Login(Credentials, requestActions);
+
         SetState();
     }
 
@@ -42,8 +52,8 @@ public class LoginViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBa
             InitGoogleLoginResponse,
             MessageError
         >.Get("/auth/google/init");
-        
-        LoginError = LoginError with
+
+        LoginError = (LoginError ?? new CommonErrorRecord<LoginError>()) with
         {
             Message = error.Message
         };
@@ -66,16 +76,16 @@ public class LoginViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBa
                 Token = body?.Token,
                 User = body?.User,
             });
-            timer?.Dispose();
+            _timer?.Dispose();
             Router.GoTo<AdminPanelViewModel>();
         };
         googleLoginPollRequest.OnError += body =>
         {
             LoginError = new() { Message = body.Message };
-            timer?.Dispose();
+            _timer?.Dispose();
         };
         googleLoginPollRequest.OnFinish += SetState;
 
-        timer = new Timer(async _ => await googleLoginPollRequest.Invoke(), null, 0, 1000);
+        _timer = new Timer(async _ => await googleLoginPollRequest.Invoke(), null, 0, 1000);
     }
 }

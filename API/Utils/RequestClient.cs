@@ -110,27 +110,4 @@ public class RequestClient<TSuccessBody, TErrorBody>(
         Dictionary<string, string>? queryParams = null,
         Dictionary<string, string>? headers = null
     ) => await Request(url, HttpMethod.Get, body, onStart, onSuccess, onError, onFinish, queryParams, headers);
-    
-    
-    public static async Task<(TSuccessBody, TErrorBody)> Delete(
-        string url,
-        object? body = null,
-        Action? onStart = null,
-        Action<TSuccessBody>? onSuccess = null,
-        Action<TErrorBody>? onError = null,
-        Action? onFinish = null,
-        Dictionary<string, string>? queryParams = null,
-        Dictionary<string, string>? headers = null
-    ) => await Request(url, HttpMethod.Delete, body, onStart, onSuccess, onError, onFinish, queryParams, headers);
-    
-    public static async Task<(TSuccessBody, TErrorBody)> Patch(
-        string url,
-        object? body = null,
-        Action? onStart = null,
-        Action<TSuccessBody>? onSuccess = null,
-        Action<TErrorBody>? onError = null,
-        Action? onFinish = null,
-        Dictionary<string, string>? queryParams = null,
-        Dictionary<string, string>? headers = null
-    ) => await Request(url, HttpMethod.Patch, body, onStart, onSuccess, onError, onFinish, queryParams, headers);
 }
