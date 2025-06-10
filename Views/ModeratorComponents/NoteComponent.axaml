@@ -1,10 +1,22 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:components="clr-namespace:VamaDesktop.Views.Components"
+             xmlns:ail="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              x:Class="VamaDesktop.Views.ModeratorComponents.NoteComponent"
              x:CompileBindings="False"
              x:Name="Self">
-    <components:Box
-        Text="{Binding #Self.Note.Content}"
-        DropdownItems="{Binding #Self.DropdownItems}" />
+    <Border Padding="0"
+            CornerRadius="8"
+            ClipToBounds="True"
+            Background="{DynamicResource SecondaryBrush}">
+        <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="16">
+                <TextBlock Foreground="{DynamicResource TextDimmedBrush}" FontSize="12" Text="{Binding #Self.Note.UpdatedAt, StringFormat='Data: {0}'}" />
+                <TextBlock Foreground="{DynamicResource TextDimmedBrush}" FontSize="12" Text="{Binding #Self.Note.ArticletId, StringFormat='ID: {0}'}" />
+                <TextBlock Padding="0,16,0,0" Foreground="{DynamicResource TextBrush}" Text="{Binding #Self.Note.Content}" />
+            </StackPanel>
+
+            <components:DropdownButton Grid.Column="1" Padding="16" Items="{Binding #Self.DropdownItems}" />
+        </Grid>
+    </Border>
 </UserControl>

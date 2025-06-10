@@ -41,10 +41,10 @@ public class LoginViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBa
         //     Router.GoTo<AdminPanelViewModel>();
         // };
         //
-        // (_, LoginError) = await CreateRequest.Login(Credentials, requestActions);
+        // (_, LoginError) = await TheoryRequests.CreateLogin(Credentials, requestActions);
         
         
-        var r = CreateRequest.Login(Credentials);
+        var r = TheoryRequests.AuthLogin(Credentials);
         r.Actions.OnSuccess += body =>
         {
             SessionManager.SaveSession(body);

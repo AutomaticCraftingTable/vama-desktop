@@ -4,6 +4,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.SimpleRouter;
+using Avalonia.Styling;
 using DotNetEnv;
 using Flurl.Http;
 using Microsoft.Extensions.DependencyInjection;

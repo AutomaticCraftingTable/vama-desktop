@@ -11,7 +11,7 @@ public static class Theory
 {
     public static async Task<(TSuccessBody?, TErrorBody?)> Request<TSuccessBody, TErrorBody, TRequestBody>(
         RequestPayload<TSuccessBody, TErrorBody, TRequestBody> payload
-    ) where TSuccessBody : class?, new() where TErrorBody : class?, new() where TRequestBody : class?
+    ) where TSuccessBody : class?, new() where TErrorBody : class?, new() where TRequestBody : class?, new()
     {
         TSuccessBody? successBody = null;
         TErrorBody? errorBody = null;
@@ -72,8 +72,10 @@ public class RequestPayload<TSuccessBody, TErrorBody, TBody>(
     TBody? body = null,
     Dictionary<string, string>? queryParams = null,
     Dictionary<string, string>? headers = null
-)
-    where TBody : class?
+) 
+    where TSuccessBody : class?, new()
+    where TErrorBody : class?, new()
+    where TBody : class?, new()
 {
     public string Url => url;
     public HttpMethod Method => method;
@@ -81,6 +83,11 @@ public class RequestPayload<TSuccessBody, TErrorBody, TBody>(
     public Dictionary<string, string>? QueryParams => queryParams;
     public Dictionary<string, string>? Headers => headers;
     public RequestActions<TSuccessBody, TErrorBody> Actions { get; } = new();
+
+    public async Task<(TSuccessBody?, TErrorBody?)> AsyncInvoke()
+    {
+        return await Theory.Request(this);
+    }
 }
 
 public class RequestActions<TSuccessBody, TErrorBody>

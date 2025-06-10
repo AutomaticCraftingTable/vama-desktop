@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Net.Http;
 using Avalonia.SimpleRouter;
 using VamaDesktop.API.DTO.Base;
 using VamaDesktop.API.Utils;
@@ -12,12 +11,12 @@ public class ProfilesViewModel : RoutedModelBase
 {
     public ProfilesViewModel(HistoryRouter<ViewModelBase> router) : base(router)
     {
-        // var r = CreateRequest.ListProfiles(new());
+        // var r = TheoryRequests.ListProfiles(new());
         // r.Actions.OnFinish += () => { };
         // r.Actions.OnFinish += () => { };
         //
         // Theory.Request(r);
-        
+        //
         // SetState();
     }
 
@@ -65,18 +64,9 @@ public class ProfilesViewModel : RoutedModelBase
             },
             Articles = new ObservableCollection<ArticleData>()
             {
-                new()
-                {
-                    Id = 0, Title = "Article 1", Thumbnail = "https://picsum.photos/200", Content = "Lorem ipsum 1"
-                },
-                new()
-                {
-                    Id = 1, Title = "Article 2", Thumbnail = "https://picsum.photos/200", Content = "Lorem ipsum 2"
-                },
-                new()
-                {
-                    Id = 2, Title = "Article 3", Thumbnail = "https://picsum.photos/200", Content = "Lorem ipsum 3"
-                },
+                new() { Id = 0, Title = "Article 1", Thumbnail = "https://picsum.photos/200", Content = "Lorem 1" },
+                new() { Id = 1, Title = "Article 2", Thumbnail = "https://picsum.photos/200", Content = "Lorem 2" },
+                new() { Id = 2, Title = "Article 3", Thumbnail = "https://picsum.photos/200", Content = "Lorem 3" },
             }
         },
         new()
