@@ -28,11 +28,6 @@
                                                   SelectionId="{Binding Index,
                                           RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
                                                   Content="Moderatorzy" />
-                            <controls:GroupButton Click="GoNotes"
-                                                  Id="2"
-                                                  SelectionId="{Binding Index,
-                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
-                                                  Content="Notatki" />
                             <controls:GroupButton Click="GoReportAuthor"
                                                   Id="3"
                                                   SelectionId="{Binding Index,

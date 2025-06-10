@@ -44,10 +44,6 @@
       <DependentUpon>SidebarView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\NotesView.axaml.cs">
-      <DependentUpon>Notes.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\ReportAuthorView.axaml.cs">
       <DependentUpon>ReportAuthor.axaml</DependentUpon>
       <SubType>Code</SubType>

@@ -56,7 +56,6 @@ public partial class App : Application
         services.AddTransient<AdminPanelViewModel>();
         services.AddTransient<ProfilesViewModel>();
         services.AddTransient<ModeratorsViewModel>();
-        services.AddTransient<NotesViewModel>();
         services.AddTransient<ReportAuthorViewModel>();
         services.AddTransient<ReportArticleViewModel>();
         services.AddTransient<ReportCommentViewModel>();

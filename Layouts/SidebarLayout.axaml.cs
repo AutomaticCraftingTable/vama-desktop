@@ -55,11 +55,6 @@ public partial class SidebarLayout : ContentControl
         Router.GoTo<ModeratorsViewModel>();
     }
 
-    private void GoNotes(object? sender, RoutedEventArgs e)
-    {
-        Router.GoTo<NotesViewModel>();
-    }
-
     private void GoReportAuthor(object? sender, RoutedEventArgs e)
     {
         Router.GoTo<ReportAuthorViewModel>();
