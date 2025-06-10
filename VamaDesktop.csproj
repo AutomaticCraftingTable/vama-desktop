@@ -83,6 +83,10 @@
     <Compile Update="Views\ProfileComponents\CommentComponent.axaml.cs">
       <DependentUpon>ItemComponent.axaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ModeratorComponents\NotesSubsection.axaml.cs">
+      <DependentUpon>CommentsSubsection.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

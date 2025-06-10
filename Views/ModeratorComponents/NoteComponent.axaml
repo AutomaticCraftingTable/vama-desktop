@@ -1,0 +1,10 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:components="clr-namespace:VamaDesktop.Views.Components"
+             x:Class="VamaDesktop.Views.ModeratorComponents.NoteComponent"
+             x:CompileBindings="False"
+             x:Name="Self">
+    <components:Box
+        Text="{Binding #Self.Note.Content}"
+        DropdownItems="{Binding #Self.DropdownItems}" />
+</UserControl>

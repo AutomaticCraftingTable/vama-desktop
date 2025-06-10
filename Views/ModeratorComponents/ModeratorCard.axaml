@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:avalonia="clr-namespace:SpacedGridControl.Avalonia;assembly=SpacedGridControl.Avalonia"
+             xmlns:components="clr-namespace:VamaDesktop.Views.Components"
+             xmlns:moderatorComponents="clr-namespace:VamaDesktop.Views.ModeratorComponents"
+             xmlns:ail="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             x:Class="VamaDesktop.Views.ModeratorComponents.ModeratorCard"
+             x:CompileBindings="False"
+             x:Name="Self">
+    <Border Classes="wrapper">
+        <avalonia:SpacedGrid RowDefinitions="Auto,Auto" RowSpacing="12">
+            <avalonia:SpacedGrid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                <Border Grid.Column="0" Classes="roundClip">
+                    <Image Width="70" Height="70" ail:ImageLoader.Source="{Binding #Self.Data.Logo}" />
+                </Border>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <TextBlock Classes="bold" Text="{Binding #Self.Moderator.Nickname}" Margin="0,4" />
+                    <TextBlock Classes="sub secondary"
+                               Text="{Binding #Self.Moderator.Notes.Count, StringFormat='napisane notatki: {0}'}" />
+                </StackPanel>
+
+                <components:DropdownButton Grid.Column="2" Items="{Binding #Self.DropdownItems}" />
+            </avalonia:SpacedGrid>
+
+            <moderatorComponents:NotesSubsection Grid.Row="1" Notes="{Binding #Self.Moderator.Notes}"/>
+        </avalonia:SpacedGrid>
+    </Border>
+</UserControl>

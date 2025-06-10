@@ -4,12 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:layouts="clr-namespace:VamaDesktop.Layouts"
              xmlns:vm="clr-namespace:VamaDesktop.ViewModels"
+             xmlns:moderatorComponents="clr-namespace:VamaDesktop.Views.ModeratorComponents"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="VamaDesktop.Views.ModeratorsView"
              x:DataType="vm:ModeratorsViewModel">
     <layouts:SidebarLayout Index="1" Router="{Binding Router}">
-        <ScrollViewer>
-            Moderators
-        </ScrollViewer>
+        <ItemsRepeater ItemsSource="{Binding ModeratorsData}">
+            <ItemsRepeater.ItemTemplate>
+                <DataTemplate>
+                    <moderatorComponents:ModeratorCard Moderator="{Binding}" />
+                </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+            <ItemsRepeater.Layout>
+                <StackLayout Spacing="24" />
+            </ItemsRepeater.Layout>
+        </ItemsRepeater>
     </layouts:SidebarLayout>
 </UserControl>

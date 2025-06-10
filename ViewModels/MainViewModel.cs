@@ -20,7 +20,7 @@ public partial class MainViewModel : RoutedModelBase
         Content = new LoadingViewModel(router);
         Router.CurrentViewModelChanged += viewModel => Content = viewModel;
      
-        Router.GoTo<ProfilesViewModel>();
+        Router.GoTo<ModeratorsViewModel>();
         // TryRecoverSession();
     }
 

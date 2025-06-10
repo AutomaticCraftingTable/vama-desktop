@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace VamaDesktop.API.DTO.Base;
 
-public record Profile
+public record ProfileData
 {
     public string Nickname { get; init; }
     public string Description { get; init; }

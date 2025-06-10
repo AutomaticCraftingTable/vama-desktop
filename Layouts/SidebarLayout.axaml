@@ -65,7 +65,20 @@
                     </Border>
                 </ScrollViewer>
                 <Grid Grid.Column="1">
-                    <ContentPresenter Content="{TemplateBinding Content}" />
+                    <Grid RowDefinitions="Auto,*">
+                        <Border
+                            Grid.Row="0"
+                            Classes="normal"
+                            Background="{DynamicResource SecondaryBrush}"
+                            CornerRadius="0">
+                            <TextBlock>Filter...</TextBlock>
+                        </Border>
+                        <ScrollViewer Grid.Row="1">
+                            <Border Classes="normal">
+                                <ContentPresenter Content="{TemplateBinding Content}" />
+                            </Border>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </Grid>
         </ControlTemplate>
