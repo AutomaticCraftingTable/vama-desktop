@@ -14,7 +14,7 @@ public class ModeratorsViewModel(HistoryRouter<ViewModelBase> router) : RoutedMo
         {
             Nickname = "CoolCat99",
             Description = "Tech enthusiast and meme collector.",
-            Logo = "https://example.com/logo1.png",
+            Logo = "https://picsum.photos/100",
             Subscribers = 1200,
             Likes = 340,
             AccountId = 10,
