@@ -11,7 +11,7 @@
         <avalonia:SpacedGrid RowDefinitions="Auto,Auto" RowSpacing="12">
             <avalonia:SpacedGrid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
                 <Border Grid.Column="0" Classes="roundClip">
-                    <Image Width="70" Height="70" ail:ImageLoader.Source="{Binding #Self.Data.Logo}" />
+                    <Image Width="70" Height="70" ail:ImageLoader.Source="{Binding #Self.Moderator.Logo}" />
                 </Border>
 
                 <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
