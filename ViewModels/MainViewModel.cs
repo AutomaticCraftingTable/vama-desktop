@@ -15,8 +15,7 @@ public partial class MainViewModel : RoutedModelBase
         Content = new LoadingViewModel(router);
         Router.CurrentViewModelChanged += viewModel => Content = viewModel;
      
-        Router.GoTo<AdminsActivityViewModel>();
-        // TryRecoverSession();
+        TryRecoverSession();
     }
 
     public void TryRecoverSession()
