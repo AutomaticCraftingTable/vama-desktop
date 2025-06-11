@@ -54,7 +54,7 @@ public partial class ProfileCard : UserControl
             {
                 if (Data.AccountId is not { } id) return;
 
-                var r = TheoryRequests.ChangeRole(
+                var r = Requests.ChangeRole(
                     id,
                     new Dictionary<string, string> { { "role", "moderator" } }
                 ).AsyncInvoke();
@@ -67,7 +67,7 @@ public partial class ProfileCard : UserControl
             {
                 if (Data.AccountId is not { } id) return;
 
-                var r = TheoryRequests.BanAccount(id).AsyncInvoke();
+                var r = Requests.BanAccount(id).AsyncInvoke();
             })
         },
         new()
@@ -77,7 +77,7 @@ public partial class ProfileCard : UserControl
             {
                 if (Data.AccountId is not { } id) return;
 
-                var r = TheoryRequests.DeleteAccount(id);
+                var r = Requests.DeleteAccount(id);
                 r.Actions.OnSuccess += _ => Content = null;
                 _ = r.AsyncInvoke();
             })

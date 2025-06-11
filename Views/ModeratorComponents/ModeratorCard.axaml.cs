@@ -37,7 +37,7 @@ public partial class ModeratorCard : UserControl
             {
                 if (Moderator.Id is not { } id) return;
 
-                var r = TheoryRequests.ChangeRole(
+                var r = Requests.ChangeRole(
                     id,
                     new Dictionary<string, string> { { "role", "user" } }
                 );
@@ -52,7 +52,7 @@ public partial class ModeratorCard : UserControl
             {
                 if (Moderator.Id is not { } id) return;
 
-                var r = TheoryRequests.DeleteAccount(id);
+                var r = Requests.DeleteAccount(id);
                 r.Actions.OnSuccess += _ => Content = null;
                 _ = r.AsyncInvoke();
             })

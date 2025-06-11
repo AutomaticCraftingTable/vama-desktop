@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace VamaDesktop.Models;
 
-public class ListOwnActivitiesModel{
+public class ListActivitiesModel{
     public int? Id { get; set; }
     [JsonPropertyName("log_name")] public string? LogName { get; set; }
     public string? Description { get; set; }
@@ -16,8 +16,4 @@ public class ListOwnActivitiesModel{
     [JsonPropertyName("created_at")] public DateTime? CreatedAt { get; set; }
     [JsonPropertyName("updated_at")] public DateTime? UpdatedAt { get; set; }
     public string? Status { get; set; }
-}
-
-public record Properties {
-    [JsonPropertyName("new_role")] public string? NewRole { get; set; }
 }

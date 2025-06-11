@@ -4,8 +4,7 @@ using DotNetEnv;
 using Flurl.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using VamaDesktop.Utils;
-using ConsoleColor = VamaDesktop.Utils.ConsoleColor;
+using VamaDesktop.Extensions;
 
 namespace VamaDesktop.API;
 
@@ -21,19 +20,19 @@ public class ApiClient : FlurlClient
 
         this.AfterCall(call =>
         {
-            ConsoleColor.Magenta.Print($"[{call.HttpRequestMessage.Method}] {call.Request.Url}");
+            $"[{call.HttpRequestMessage.Method}] {call.Request.Url}".PrintWithColor(Colors.Magenta);
             Console.WriteLine("  Headers:");
             foreach (var header in call.Request.Headers)
                 Console.WriteLine($"    {header.Name}: {string.Join(", ", header.Value)}");
             if (call.RequestBody != null)
                 Console.WriteLine($"  Request body: {call.RequestBody}");
-            ConsoleColor.Cyan.Print($"  Response: {call.Response.StatusCode}");
+            $"  Response: {call.Response.StatusCode}".PrintWithColor(Colors.Cyan);
             var body = call.Response.ResponseMessage.Content.ReadAsStringAsync().Result;
             string formatted = JToken.Parse(body).ToString(Formatting.Indented);
             string padded = string.Join("\n", formatted
                 .Split('\n')
                 .Select(line => "  " + line));
-            ConsoleColor.Yellow.Print($"  Response body:\n{padded}");
+            $"  Response body:\n{padded}".PrintWithColor(Colors.Yellow);
         });
     }
 }

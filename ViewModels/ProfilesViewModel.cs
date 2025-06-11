@@ -13,7 +13,7 @@ public class ProfilesViewModel : RoutedModelBase
 {
     public ProfilesViewModel(HistoryRouter<ViewModelBase> router) : base(router)
     {
-        var r = TheoryRequests.ListProfiles();
+        var r = Requests.ListProfiles();
         r.Actions.OnSuccess += profiles => ProfilesModel = profiles;
         r.Actions.OnFinish += SetState;
         r.AsyncInvoke();

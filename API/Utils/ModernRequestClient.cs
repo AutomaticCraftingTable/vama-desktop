@@ -8,7 +8,7 @@ using VamaDesktop.Extensions;
 
 namespace VamaDesktop.API.Utils;
 
-public static class Theory
+public static class Reuqests
 {
     public static async Task<(TSuccessBody?, TErrorBody?)> Request<TSuccessBody, TErrorBody, TRequestBody>(
         RequestPayload<TSuccessBody, TErrorBody, TRequestBody> payload
@@ -83,7 +83,7 @@ public class RequestPayload<TSuccessBody, TErrorBody, TBody>(
 
     public async Task<(TSuccessBody?, TErrorBody?)> AsyncInvoke()
     {
-        return await Theory.Request(this);
+        return await Reuqests.Request(this);
     }
 }
 

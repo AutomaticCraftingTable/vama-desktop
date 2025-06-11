@@ -8,46 +8,46 @@
              x:Class="VamaDesktop.Views.AdminsActivityView"
              x:DataType="vm:AdminsActivityViewModel">
     <layouts:SidebarLayout Index="7" Router="{Binding Router}">
-        <!-- <ItemsRepeater ItemsSource="{Binding OwnActivitiesModel}"> -->
-        <!--     <ItemsRepeater.ItemTemplate> -->
-        <!--         <DataTemplate> -->
-        <!--             <Border Padding="16" -->
-        <!--                     CornerRadius="8" -->
-        <!--                     ClipToBounds="True" -->
-        <!--                     Background="{DynamicResource SecondaryBrush}"> -->
-        <!--                 <StackPanel Spacing="8"> -->
-        <!--                     <TextBlock Classes="bold" FontSize="18" Margin="0,0,0,4" Text="{Binding LogName}" /> -->
-        <!--                     <TextBlock Classes="secondary"> -->
-        <!--                         <Run Foreground="{DynamicResource TextBrush}">Opis: </Run> -->
-        <!--                         <Run Text="{Binding Description}" /> -->
-        <!--                     </TextBlock> -->
-        <!--                     <TextBlock Classes="secondary"> -->
-        <!--                         <Run Foreground="{DynamicResource TextBrush}">Id subjektu: </Run> -->
-        <!--                         <Run Text="{Binding SubjectId}" /> -->
-        <!--                     </TextBlock> -->
-        <!--                     <TextBlock Classes="secondary"> -->
-        <!--                         <Run Foreground="{DynamicResource TextBrush}">Typ subjektu: </Run> -->
-        <!--                         <Run Text="{Binding SubjectType}" /> -->
-        <!--                     </TextBlock> -->
-        <!--                     <TextBlock Classes="secondary"> -->
-        <!--                         <Run Foreground="{DynamicResource TextBrush}">Wykonawca: </Run> -->
-        <!--                         <Run Text="{Binding CauserId}" /> -->
-        <!--                     </TextBlock> -->
-        <!--                     <TextBlock Classes="secondary"> -->
-        <!--                         <Run Foreground="{DynamicResource TextBrush}">Typ wykonawcy: </Run> -->
-        <!--                         <Run Text="{Binding CauserType}" /> -->
-        <!--                     </TextBlock> -->
-        <!--                     <TextBlock Classes="secondary"> -->
-        <!--                         <Run Foreground="{DynamicResource TextBrush}">Status: </Run> -->
-        <!--                         <Run Text="{Binding Status}" /> -->
-        <!--                     </TextBlock> -->
-        <!--                 </StackPanel> -->
-        <!--             </Border> -->
-        <!--         </DataTemplate> -->
-        <!--     </ItemsRepeater.ItemTemplate> -->
-        <!--     <ItemsRepeater.Layout> -->
-        <!--         <StackLayout Spacing="24" /> -->
-        <!--     </ItemsRepeater.Layout> -->
-        <!-- </ItemsRepeater> -->
+        <ItemsRepeater ItemsSource="{Binding AdminsActivitiesModel}">
+            <ItemsRepeater.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="16"
+                            CornerRadius="8"
+                            ClipToBounds="True"
+                            Background="{DynamicResource SecondaryBrush}">
+                        <StackPanel Spacing="8">
+                            <TextBlock Classes="bold" FontSize="18" Margin="0,0,0,4" Text="{Binding LogName}" />
+                            <TextBlock Classes="secondary">
+                                <Run Foreground="{DynamicResource TextBrush}">Opis: </Run>
+                                <Run Text="{Binding Description}" />
+                            </TextBlock>
+                            <TextBlock Classes="secondary">
+                                <Run Foreground="{DynamicResource TextBrush}">Id subjektu: </Run>
+                                <Run Text="{Binding SubjectId}" />
+                            </TextBlock>
+                            <TextBlock Classes="secondary">
+                                <Run Foreground="{DynamicResource TextBrush}">Typ subjektu: </Run>
+                                <Run Text="{Binding SubjectType}" />
+                            </TextBlock>
+                            <TextBlock Classes="secondary">
+                                <Run Foreground="{DynamicResource TextBrush}">Wykonawca: </Run>
+                                <Run Text="{Binding CauserId}" />
+                            </TextBlock>
+                            <TextBlock Classes="secondary">
+                                <Run Foreground="{DynamicResource TextBrush}">Typ wykonawcy: </Run>
+                                <Run Text="{Binding CauserType}" />
+                            </TextBlock>
+                            <TextBlock Classes="secondary">
+                                <Run Foreground="{DynamicResource TextBrush}">Status: </Run>
+                                <Run Text="{Binding Status}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+            <ItemsRepeater.Layout>
+                <StackLayout Spacing="24" />
+            </ItemsRepeater.Layout>
+        </ItemsRepeater>
     </layouts:SidebarLayout>
 </UserControl>

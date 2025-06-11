@@ -32,12 +32,12 @@ public partial class ArticleComponent : UserControl
         new()
         {
             Text = "Zgłoś artykuł",
-            Click = new RelayCommand(() => _ = TheoryRequests.ReportArticle(Article.Id).AsyncInvoke())
+            Click = new RelayCommand(() => _ = Requests.ReportArticle(Article.Id).AsyncInvoke())
         },
         new()
         {
             Text = "Zablokuj artykuł",
-            Click = new RelayCommand(() => _ = TheoryRequests.BanArticle(Article.Id).AsyncInvoke())
+            Click = new RelayCommand(() => _ = Requests.BanArticle(Article.Id).AsyncInvoke())
         }
     };
 }

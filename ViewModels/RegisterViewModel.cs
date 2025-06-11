@@ -22,7 +22,7 @@ public class RegisterViewModel(HistoryRouter<ViewModelBase> router) : RoutedMode
 
     public void Register()
     {
-        var registerRequest = new RequestClient<AuthResponse, CommonErrorRecord<AuthError>>(
+        var registerRequest = new DeprecatedRequestClient<AuthResponse, CommonErrorRecord<AuthError>>(
             async client => await client
                 .Request("/api/auth/register")
                 .PostJsonAsync(Credentials)
@@ -50,7 +50,7 @@ public class RegisterViewModel(HistoryRouter<ViewModelBase> router) : RoutedMode
 
     public async void RegisterGoogle()
     {
-        var (oAuth, error) = await RequestClient<
+        var (oAuth, error) = await DeprecatedRequestClient<
             InitGoogleLoginResponse,
             MessageError
         >.Get("/auth/google/init");
@@ -63,7 +63,7 @@ public class RegisterViewModel(HistoryRouter<ViewModelBase> router) : RoutedMode
         if (oAuth.Redirect_url == null) return;
         Process.Start(new ProcessStartInfo(oAuth.Redirect_url) { UseShellExecute = true });
 
-        var googleLoginPollRequest = new RequestClient<GoogleLoginResponse, MessageError>(
+        var googleLoginPollRequest = new DeprecatedRequestClient<GoogleLoginResponse, MessageError>(
             async client => await client
                 .Request($"/auth/google/wait/{oAuth.State}")
                 .GetJsonAsync<GoogleLoginResponse>()

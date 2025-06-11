@@ -38,14 +38,14 @@ public partial class CommentComponent : UserControl
         new()
         {
             Text = "Zgłoś komentarz",
-            Click = new RelayCommand(() => _ = TheoryRequests.ReportComment(Id).AsyncInvoke())
+            Click = new RelayCommand(() => _ = Requests.ReportComment(Id).AsyncInvoke())
         },
         new()
         {
             Text = "Usuń (zablokuj) komentarz",
             Click = new RelayCommand(() =>
             {
-                var r = TheoryRequests.BanComment(Id);
+                var r = Requests.BanComment(Id);
                 r.Actions.OnSuccess += _ => Content = null;
                 r.AsyncInvoke();
             })

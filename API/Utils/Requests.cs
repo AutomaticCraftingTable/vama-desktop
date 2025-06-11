@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
 using VamaDesktop.API.DTO.Models.Body;
 using VamaDesktop.API.DTO.Models.Error;
 using VamaDesktop.API.DTO.Models.Success;
@@ -11,7 +9,7 @@ using VamaDesktop.Models.Get;
 
 namespace VamaDesktop.API.Utils;
 
-public static class TheoryRequests
+public static class Requests
 {
     public static RequestPayload<
         AuthResponse,
@@ -38,7 +36,7 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        ObservableCollection<ListOwnActivitiesModel>,
+        ObservableCollection<ListActivitiesModel>,
         object
     > Activities()
     {
@@ -49,7 +47,7 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
+        ObservableCollection<ListActivitiesModel>,
         object
     > ActivitiesAdmins()
     {

@@ -4,7 +4,6 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:controls="clr-namespace:VamaDesktop.Controls"
                 xmlns:layouts="clr-namespace:VamaDesktop.Layouts"
-                xmlns:converters="clr-namespace:VamaDesktop.Converters"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                 x:CompileBindings="False"
                 x:Class="VamaDesktop.Layouts.SidebarLayout">
@@ -30,21 +29,6 @@
                                                   SelectionId="{Binding Index,
                                           RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
                                                   Content="Moderatorzy" />
-                            <controls:GroupButton Click="GoReportAuthor"
-                                                  Id="3"
-                                                  SelectionId="{Binding Index,
-                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
-                                                  Content="Zgłoszeni autorzy" />
-                            <controls:GroupButton Click="GoReportArticle"
-                                                  Id="4"
-                                                  SelectionId="{Binding Index,
-                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
-                                                  Content="Zgłoszone artykuły" />
-                            <controls:GroupButton Click="GoReportComment"
-                                                  Id="5"
-                                                  SelectionId="{Binding Index,
-                                          RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
-                                                  Content="Zgłoszone komentarze" />
                             <controls:GroupButton Click="GoOwnActivity"
                                                   Id="6"
                                                   SelectionId="{Binding Index,

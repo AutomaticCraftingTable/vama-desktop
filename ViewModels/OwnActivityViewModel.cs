@@ -9,11 +9,11 @@ public class OwnActivityViewModel : RoutedModelBase
 {
     public OwnActivityViewModel(HistoryRouter<ViewModelBase> router) : base(router)
     {
-        var r = TheoryRequests.Activities();
+        var r = Requests.Activities();
         r.Actions.OnSuccess += body => OwnActivitiesModel = body;
         r.Actions.OnFinish += SetState;
         r.AsyncInvoke();
     }
 
-    public ObservableCollection<ListOwnActivitiesModel> OwnActivitiesModel { get; set; }
+    public ObservableCollection<ListActivitiesModel> OwnActivitiesModel { get; set; }
 }

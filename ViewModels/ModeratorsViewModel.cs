@@ -9,7 +9,7 @@ public class ModeratorsViewModel : RoutedModelBase
 {
     public ModeratorsViewModel(HistoryRouter<ViewModelBase> router) : base(router)
     {
-        var r = TheoryRequests.ListModerators();
+        var r = Requests.ListModerators();
         r.Actions.OnSuccess += body => ModeratorsModel = body;
         r.Actions.OnFinish += SetState;
         r.AsyncInvoke();

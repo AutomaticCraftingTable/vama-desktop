@@ -21,7 +21,7 @@ public class LoginViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBa
 
     public async void Login()
     {
-        // (_, LoginError) = await RequestClient<
+        // (_, LoginError) = await DeprecatedRequestClient<
         //     AuthResponse,
         //     CommonErrorRecord<LoginError>
         // >.Post(
@@ -41,24 +41,24 @@ public class LoginViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBa
         //     Router.GoTo<AdminPanelViewModel>();
         // };
         //
-        // (_, LoginError) = await TheoryRequests.CreateLogin(Credentials, requestActions);
+        // (_, LoginError) = await Requests.CreateLogin(Credentials, requestActions);
         
         
-        var r = TheoryRequests.AuthLogin(Credentials);
+        var r = Requests.AuthLogin(Credentials);
         r.Actions.OnSuccess += body =>
         {
             SessionManager.SaveSession(body);
             Router.GoTo<AdminPanelViewModel>();
         };
         
-        (_, LoginError) = await Theory.Request(r);
+        (_, LoginError) = await Reuqests.Request(r);
 
         SetState();
     }
 
     public async void LoginGoogle()
     {
-        var (oAuth, error) = await RequestClient<
+        var (oAuth, error) = await DeprecatedRequestClient<
             InitGoogleLoginResponse,
             MessageError
         >.Get("/auth/google/init");
@@ -71,7 +71,7 @@ public class LoginViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBa
         if (oAuth.Redirect_url == null) return;
         Process.Start(new ProcessStartInfo(oAuth.Redirect_url) { UseShellExecute = true });
 
-        var googleLoginPollRequest = new RequestClient<GoogleLoginResponse, MessageError>(
+        var googleLoginPollRequest = new DeprecatedRequestClient<GoogleLoginResponse, MessageError>(
             async client => await client
                 .Request($"/auth/google/wait/{oAuth.State}")
                 .GetJsonAsync<GoogleLoginResponse>()

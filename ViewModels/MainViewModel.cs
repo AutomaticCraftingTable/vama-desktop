@@ -1,14 +1,6 @@
-﻿using System;
-using System.Net.Mime;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
-using Akavache;
-using Avalonia;
-using Avalonia.SimpleRouter;
-using Avalonia.Styling;
+﻿using Avalonia.SimpleRouter;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Flurl.Http;
-using VamaDesktop.API.DTO;
 using VamaDesktop.API.DTO.Models.Success;
 using VamaDesktop.API.Utils;
 
@@ -18,19 +10,18 @@ public partial class MainViewModel : RoutedModelBase
 {
     [ObservableProperty] private ViewModelBase _content = default!;
 
-
     public MainViewModel(HistoryRouter<ViewModelBase> router) : base(router)
     {
         Content = new LoadingViewModel(router);
         Router.CurrentViewModelChanged += viewModel => Content = viewModel;
      
-        Router.GoTo<OwnActivityViewModel>();
+        Router.GoTo<AdminsActivityViewModel>();
         // TryRecoverSession();
     }
 
     public void TryRecoverSession()
     {
-        var requset = new RequestClient<AuthResponse, object>(
+        var requset = new DeprecatedRequestClient<AuthResponse, object>(
             async client => await client
                 .Request("/api/user")
                 .GetJsonAsync<AuthResponse>()
@@ -44,10 +35,5 @@ public partial class MainViewModel : RoutedModelBase
         };
         requset.OnError += _ => Router.GoTo<LoginViewModel>();
         requset.Invoke();
-    }
-
-    public void CheckRoleSufficiency()
-    {
-        
     }
 }

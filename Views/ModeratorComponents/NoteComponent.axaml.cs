@@ -36,7 +36,7 @@ public partial class NoteComponent : UserControl
                 () =>
                 {
                     if (Note.Id is not { } id) return;
-                    _ = TheoryRequests.DeleteNote(id).AsyncInvoke();
+                    _ = Requests.DeleteNote(id).AsyncInvoke();
                 }
             )
         }

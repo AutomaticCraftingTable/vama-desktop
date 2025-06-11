@@ -7,8 +7,8 @@ using VamaDesktop.Extensions;
 
 namespace VamaDesktop.API.Utils;
 
-public class RequestClient<TSuccessBody, TErrorBody>(
-    RequestClient<TSuccessBody, TErrorBody>.ResponseDefinition definition)
+public class DeprecatedRequestClient<TSuccessBody, TErrorBody>(
+    DeprecatedRequestClient<TSuccessBody, TErrorBody>.ResponseDefinition definition)
     where TErrorBody : new()
     where TSuccessBody : new()
 {
@@ -72,7 +72,7 @@ public class RequestClient<TSuccessBody, TErrorBody>(
         Dictionary<string, string>? headers = null
     )
     {
-        var rc = new RequestClient<TSuccessBody, TErrorBody>(
+        var rc = new DeprecatedRequestClient<TSuccessBody, TErrorBody>(
             async client => await client
                 .Request(url)
                 .SetQueryParams(queryParams)

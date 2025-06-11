@@ -37,7 +37,7 @@ public partial class SidebarLayout : ContentControl
 
     private void Logout(object? sender, RoutedEventArgs e)
     {
-        var request = new RequestClient<MessageResponse, MessageError>(
+        var request = new DeprecatedRequestClient<MessageResponse, MessageError>(
             async client => await client
                 .Request("/api/auth/logout")
                 .PostAsync()
