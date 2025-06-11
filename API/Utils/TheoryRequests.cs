@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using VamaDesktop.API.DTO.Models.Body;
 using VamaDesktop.API.DTO.Models.Error;
 using VamaDesktop.API.DTO.Models.Success;
+using VamaDesktop.Models.Pages;
 
 namespace VamaDesktop.API.Utils;
 
@@ -23,7 +24,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > ActivitiesAdmin()
     {
@@ -34,7 +34,6 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
         object,
         object
     > ListModerators()
@@ -47,7 +46,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > Activities()
     {
@@ -59,7 +57,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > ActivitiesAdmins()
     {
@@ -70,8 +67,7 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
-        object,
+        ListProfilesData,
         object
     > ListProfiles()
     {
@@ -82,7 +78,6 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
         object,
         object
     > ListReportsProfiles()
@@ -95,7 +90,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > ListReportsComments()
     {
@@ -106,7 +100,6 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
         object,
         object
     > ListReportsArticles()
@@ -119,7 +112,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > DeleteNote(int articletId)
     {
@@ -130,7 +122,6 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
         object,
         object
     > DeleteAccount(int accountId)
@@ -143,7 +134,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > BanAccount(int accountId)
     {
@@ -155,7 +145,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > UnbanAccount(int accountId)
     {
@@ -166,7 +155,6 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
         object,
         object
     > ChangeRole(int accountId)
@@ -180,7 +168,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > DeleteArticle(int artcileId)
     {
@@ -191,7 +178,6 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
         object,
         object
     > UnbanArticle(int artcileId)
@@ -204,7 +190,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > BanArticle(int artcileId)
     {
@@ -215,7 +200,6 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
         object,
         object
     > DeleteArticleReport(int artcileId)
@@ -228,7 +212,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > UnbanComment(int commentId)
     {
@@ -239,7 +222,6 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
         object,
         object
     > BanComment(int commentId)
@@ -252,7 +234,6 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object,
         object
     > ReportComment(int commentId)
     {
@@ -261,8 +242,8 @@ public static class TheoryRequests
             url: $"/api/comment/{commentId}/report"
         );
     }
+
     public static RequestPayload<
-        object,
         object,
         object
     > DeleteProfileReport(int commentId)

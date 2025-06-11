@@ -9,10 +9,10 @@
              x:Class="VamaDesktop.Views.ProfilesView"
              x:DataType="vm:ProfilesViewModel">
     <layouts:SidebarLayout Index="0" Router="{Binding Router}">
-        <ItemsRepeater ItemsSource="{Binding ProfilesData}">
+        <ItemsRepeater ItemsSource="{Binding ProfilesModel.Profiles}">
             <ItemsRepeater.ItemTemplate>
                 <DataTemplate>
-                    <profileComponents:ProfileCard Data="{Binding}" />
+                    <profileComponents:ProfileCard Data="{Binding }" />
                 </DataTemplate>
             </ItemsRepeater.ItemTemplate>
             <ItemsRepeater.Layout>

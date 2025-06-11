@@ -1,7 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:VamaDesktop.Controls">
-    <Style Selector="Button, controls|GroupButton">
+    <Style Selector="Button, controls|GroupButton, ToggleButton">
         <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
         <Setter Property="Padding" Value="20,12" />
         <Setter Property="FontSize" Value="16" />
@@ -14,11 +14,11 @@
             <Setter Property="Background" Value="{DynamicResource PrimaryHoverBrush}" />
         </Style>
         <Style Selector="^.text">
-            <Setter Property="Background" Value="{StaticResource TransparentColor}" />
+            <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
             <Setter Property="Padding" Value="0" />
             <Style Selector="^:pressed /template/ ContentPresenter" >
-                <Setter Property="Background" Value="{StaticResource TransparentColor}" />
+                <Setter Property="Background" Value="Transparent" />
             </Style>
         </Style>
         <Style Selector="^.wide">
@@ -28,17 +28,23 @@
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
         </Style>
+        <Style Selector="^:checked">
+            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+            <Style Selector="^ AccessText">
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+            </Style>
+        </Style>
         <Style Selector="^.secondary">
-            <Setter Property="Background" Value="{DynamicResource SecondaryColor}" />
-            <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+            <Setter Property="Background" Value="{DynamicResource SecondaryBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
             <Style Selector="^:pointerover" >
-                <Setter Property="Background" Value="{DynamicResource SecondaryHoverColor}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHoverBrush}" />
             </Style>
             <Style Selector="^:pressed /template/ ContentPresenter" >
-                <Setter Property="Background" Value="{DynamicResource SecondaryHoverColor}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHoverBrush}" />
             </Style>
             <Style Selector="^:pointerover:pressed /template/ ContentPresenter" >
-                <Setter Property="Background" Value="{DynamicResource SecondaryHoverColor}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHoverBrush}" />
             </Style>
         </Style>
         <Style Selector="^.slim">

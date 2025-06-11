@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.SimpleRouter;
+using Avalonia.Styling;
 using Flurl.Http;
 using VamaDesktop.API.DTO;
 using VamaDesktop.API.DTO.Models.Error;
@@ -34,11 +35,6 @@ public partial class SidebarLayout : ContentControl
 
     public SidebarLayout() => InitializeComponent();
 
-    private void GoUsers(object? sender, RoutedEventArgs e)
-    {
-        Router.GoTo<ProfilesViewModel>();
-    }
-
     private void Logout(object? sender, RoutedEventArgs e)
     {
         var request = new RequestClient<MessageResponse, MessageError>(
@@ -50,6 +46,17 @@ public partial class SidebarLayout : ContentControl
         Router.GoTo<LoginViewModel>();
     }
 
+    private void SwitchTheme(object? sender, RoutedEventArgs e)
+    {
+        var r = Application.Current!.ActualThemeVariant;
+        Application.Current!.RequestedThemeVariant = r == ThemeVariant.Light ? ThemeVariant.Dark : ThemeVariant.Light;
+    }
+
+    private void GoProfiles(object? sender, RoutedEventArgs e)
+    {
+        Router.GoTo<ProfilesViewModel>();
+    }
+    
     private void GoModerators(object? sender, RoutedEventArgs e)
     {
         Router.GoTo<ModeratorsViewModel>();

@@ -66,13 +66,22 @@ public static class Theory
     }
 }
 
+public class RequestPayload<TSuccessBody, TErrorBody>(
+    HttpMethod method,
+    string url,
+    Dictionary<string, string>? queryParams = null,
+    Dictionary<string, string>? headers = null
+) : RequestPayload<TSuccessBody, TErrorBody, object>(method, url, queryParams, headers)
+    where TSuccessBody : class?, new()
+    where TErrorBody : class?, new();
+
 public class RequestPayload<TSuccessBody, TErrorBody, TBody>(
     HttpMethod method,
     string url,
     TBody? body = null,
     Dictionary<string, string>? queryParams = null,
     Dictionary<string, string>? headers = null
-) 
+)
     where TSuccessBody : class?, new()
     where TErrorBody : class?, new()
     where TBody : class?, new()

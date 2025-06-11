@@ -4,7 +4,9 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:controls="clr-namespace:VamaDesktop.Controls"
                 xmlns:layouts="clr-namespace:VamaDesktop.Layouts"
+                xmlns:converters="clr-namespace:VamaDesktop.Converters"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                x:CompileBindings="False"
                 x:Class="VamaDesktop.Layouts.SidebarLayout">
     <ContentControl.Template>
         <ControlTemplate>
@@ -18,7 +20,7 @@
                     <Border HorizontalAlignment="Left" Classes="normal" Background="{DynamicResource SecondaryColor}">
                         <StackPanel Classes="normal" Spacing="12">
                             <Label Classes="dimmed">Zarządzanie</Label>
-                            <controls:GroupButton Click="GoUsers"
+                            <controls:GroupButton Click="GoProfiles"
                                                   Id="0"
                                                   SelectionId="{Binding Index,
                                         RelativeSource={RelativeSource AncestorType=layouts:SidebarLayout}}"
@@ -66,7 +68,10 @@
                             Classes="normal"
                             Background="{DynamicResource SecondaryBrush}"
                             CornerRadius="0">
-                            <TextBlock>Filter...</TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Filter...</TextBlock>
+                                <Button Click="SwitchTheme">Zmień motyw</Button>
+                            </StackPanel>
                         </Border>
                         <ScrollViewer Grid.Row="1">
                             <Border Classes="normal">

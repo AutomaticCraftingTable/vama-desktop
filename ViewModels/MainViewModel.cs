@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Net.Mime;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Akavache;
+using Avalonia;
 using Avalonia.SimpleRouter;
+using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Flurl.Http;
 using VamaDesktop.API.DTO;
@@ -20,8 +23,8 @@ public partial class MainViewModel : RoutedModelBase
         Content = new LoadingViewModel(router);
         Router.CurrentViewModelChanged += viewModel => Content = viewModel;
      
-        // Router.GoTo<ModeratorsViewModel>();
-        TryRecoverSession();
+        Router.GoTo<ModeratorsViewModel>();
+        // TryRecoverSession();
     }
 
     public void TryRecoverSession()
