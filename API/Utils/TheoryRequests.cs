@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using VamaDesktop.API.DTO.Models.Body;
@@ -156,12 +157,14 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object
-    > ChangeRole(int accountId)
+        object,
+        Dictionary<string, string>
+    > ChangeRole(int accountId, Dictionary<string, string> body)
     {
         return new(
-            method: HttpMethod.Patch,
-            url: $"/api/account/{accountId}/role"
+            method: HttpMethod.Post,
+            url: $"/api/account/{accountId}/role",
+            body: body
         );
     }
 
@@ -235,11 +238,22 @@ public static class TheoryRequests
     public static RequestPayload<
         object,
         object
-    > ReportComment(int commentId)
+    > ReportComment(int id)
     {
         return new(
             method: HttpMethod.Post,
-            url: $"/api/comment/{commentId}/report"
+            url: $"/api/comment/{id}/report"
+        );
+    }
+    
+    public static RequestPayload<
+        object,
+        object
+    > ReportArticle(int id)
+    {
+        return new(
+            method: HttpMethod.Post,
+            url: $"/api/article/{id}/report"
         );
     }
 

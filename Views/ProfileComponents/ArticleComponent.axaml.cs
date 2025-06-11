@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using CommunityToolkit.Mvvm.Input;
 using VamaDesktop.API.DTO.Base;
+using VamaDesktop.API.Utils;
 using VamaDesktop.Models;
 
 namespace VamaDesktop.Views.ProfileComponents;
@@ -15,27 +16,28 @@ public partial class ArticleComponent : UserControl
     {
         InitializeComponent();
     }
-    
-    public static readonly StyledProperty<ArticleData> ArticleProperty = AvaloniaProperty.Register<ArticleComponent, ArticleData>(
-        nameof(Article));
+
+    public static readonly StyledProperty<ArticleData> ArticleProperty =
+        AvaloniaProperty.Register<ArticleComponent, ArticleData>(
+            nameof(Article));
 
     public ArticleData Article
     {
         get => GetValue(ArticleProperty);
         set => SetValue(ArticleProperty, value);
     }
-    
+
     public ObservableCollection<ButtonData> DropdownItems => new()
     {
         new()
         {
             Text = "Zgłoś artykuł",
-            Click = new RelayCommand(() => Console.WriteLine($"Zgłoś artykuł: {Article.Id}"))
+            Click = new RelayCommand(() => _ = TheoryRequests.ReportArticle(Article.Id).AsyncInvoke())
         },
         new()
         {
             Text = "Zablokuj artykuł",
-            Click = new RelayCommand(() => Console.WriteLine($"Zablokuj artykuł: {Article.Id}"))
+            Click = new RelayCommand(() => _ = TheoryRequests.BanArticle(Article.Id).AsyncInvoke())
         }
     };
 }

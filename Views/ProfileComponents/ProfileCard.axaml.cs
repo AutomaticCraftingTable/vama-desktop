@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
@@ -45,6 +46,20 @@ public partial class ProfileCard : UserControl
 
     public ObservableCollection<ButtonData> DropdownItems => new()
     {
+        
+        new()
+        {
+            Text = "Podnieś rolę do moderatora",
+            Click = new RelayCommand(() =>
+            {
+                if (Data.AccountId is not { } id) return;
+
+                var r = TheoryRequests.ChangeRole(
+                    id,
+                    new Dictionary<string, string> { { "role", "moderator" } }
+                ).AsyncInvoke();
+            })
+        },
         new()
         {
             Text = "Zablokuj konto",

@@ -25,7 +25,7 @@ public partial class MainViewModel : RoutedModelBase
         Router.CurrentViewModelChanged += viewModel => Content = viewModel;
      
         Router.GoTo<ProfilesViewModel>();
-        TryRecoverSession();
+        // TryRecoverSession();
     }
 
     public void TryRecoverSession()

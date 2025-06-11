@@ -69,7 +69,6 @@
                             Background="{DynamicResource SecondaryBrush}"
                             CornerRadius="0">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock>Filter...</TextBlock>
                                 <Button Click="SwitchTheme">Zmień motyw</Button>
                             </StackPanel>
                         </Border>

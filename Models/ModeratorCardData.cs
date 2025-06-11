@@ -13,7 +13,7 @@ public record ModeratorCardData
     public int Likes { get; init; }
     
     [property: JsonPropertyName("account_id")]
-    public int AccountId { get; init; }
+    public int? AccountId { get; init; }
     [property: JsonPropertyName("created_at")]
     public string CreatedAt { get; init; }
     [property: JsonPropertyName("updated_at")]
