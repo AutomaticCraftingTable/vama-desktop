@@ -113,11 +113,11 @@ public static class TheoryRequests
     public static RequestPayload<
         object,
         object
-    > DeleteNote(int articletId)
+    > DeleteNote(int id)
     {
         return new(
             method: HttpMethod.Delete,
-            url: $"/api/article/{articletId}/note"
+            url: $"/api/note/{id}"
         );
     }
 
@@ -246,11 +246,11 @@ public static class TheoryRequests
     public static RequestPayload<
         object,
         object
-    > DeleteProfileReport(int commentId)
+    > DeleteProfileReport(string nickname)
     {
         return new(
             method: HttpMethod.Delete,
-            url: $"/api/profile/nickname/report"
+            url: $"/api/profile/{nickname}/report"
         );
     }
 }

@@ -15,6 +15,7 @@ public class ProfilesViewModel : RoutedModelBase
     {
         var r = TheoryRequests.ListProfiles();
         r.Actions.OnSuccess += profiles => ProfilesModel = profiles;
+        r.Actions.OnFinish += SetState;
         r.AsyncInvoke();
     }
 

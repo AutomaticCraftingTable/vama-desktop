@@ -15,5 +15,6 @@ public record ProfileCardData
     public int? Followers { get; set; }
     [JsonPropertyName("created_at")] public DateTime? CreatedAt { get; set; }
     [JsonPropertyName("updated_at")] public DateTime? UpdatedAt { get; set; }
-    public ObservableCollection<object>? Activities { get; set; }
+    public ObservableCollection<CommentData>? Comments { get; set; }
+    public ObservableCollection<ArticleData>? Articles { get; set; }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Flurl.Http;
 using VamaDesktop.Extensions;
@@ -30,25 +31,12 @@ public static class Theory
             payload.Actions.RaiseSuccess(successBody);
         }
 
-        catch (FlurlParsingException)
+        catch (FlurlParsingException ex)
         {
-            $"Error: Couldn't deserialize to:".PrintWithColor(Colors.Red);
-            if (successBody == null)
-            {
-                $"Null".PrintWithColor(Colors.Red);
-            }
-            else
-            {
-                "{".PrintWithColor(Colors.Red);
-                var props = successBody.GetType().GetProperties();
-                foreach (var prop in successBody.GetType().GetProperties())
-                {
-                    var type = Nullable.GetUnderlyingType(prop.PropertyType)?.Name ?? prop.PropertyType.Name;
-                    $"  {prop.Name}: {type}".PrintWithColor(Colors.Red);
-                }
-
-                "}".PrintWithColor(Colors.Red);
-            }
+            $"Error: {ex.Message}".PrintWithColor(Colors.Red);
+            var match = Regex.Match(ex.InnerException?.Message ?? "", @"Path: (.+?) \|");
+            if (match.Success)
+                $"Path: {match.Groups[1].Value}".PrintWithColor(Colors.Red);
         }
 
         catch (FlurlHttpException ex)

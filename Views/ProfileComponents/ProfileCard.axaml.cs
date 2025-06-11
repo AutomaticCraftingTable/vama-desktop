@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
+using VamaDesktop.API.Utils;
 using VamaDesktop.Models;
 
 namespace VamaDesktop.Views.ProfileComponents;
@@ -41,30 +42,37 @@ public partial class ProfileCard : UserControl
         get => GetValue(SectionIdProperty);
         set => SetValue(SectionIdProperty, value);
     }
-    
+
     public ObservableCollection<ButtonData> DropdownItems => new()
     {
         new()
         {
-            Text = "Zgłoś profil",
-            Click = new RelayCommand(() => Console.WriteLine($"Zgłoś komentarz: {Id}"))
+            Text = "Zablokuj konto",
+            Click = new RelayCommand(() =>
+            {
+                if (Data.AccountId is not { } id) return;
+
+                var r = TheoryRequests.BanAccount(id).AsyncInvoke();
+            })
         },
         new()
         {
-            Text = "Zablokuj profil",
-            Click = new RelayCommand(() => Console.WriteLine($"Zablokuj komentarz: {Id}"))
-        },
-        new()
-        {
-            Text = "Usuń profil",
-            Click = new RelayCommand(() => Console.WriteLine($"Zablokuj komentarz: {Id}"))
+            Text = "Usuń konto",
+            Click = new RelayCommand(() =>
+            {
+                if (Data.AccountId is not { } id) return;
+
+                var r = TheoryRequests.DeleteAccount(id);
+                r.Actions.OnSuccess += _ => Content = null;
+                _ = r.AsyncInvoke();
+            })
         }
     };
 
     private void TabSwitched(object? sender, SelectionChangedEventArgs e)
     {
         if (sender is not TabControl tabControl) return;
-        
+
         SectionId = tabControl.SelectedIndex;
     }
 }

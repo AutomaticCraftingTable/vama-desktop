@@ -5,8 +5,8 @@ namespace VamaDesktop.API.DTO.Base;
 public record CommentData
 {
     public int Id { get; init; }
-    public string Causer { get; init; }
+    public int Causer { get; init; }
     [property: JsonPropertyName("article_id")]
-    public int ArticleID { get; init; }
+    public int ArticleId { get; init; }
     public string Content { get; init; }
 }

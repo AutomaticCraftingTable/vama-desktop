@@ -33,5 +33,8 @@
             </Transitions>
         </Setter>
     </Style>
+    <Style Selector="Image">
+        <Setter Property="Source" Value="avares://VamaDesktop/Assets/placeholder.png"/>
+    </Style>
     
 </Styles>

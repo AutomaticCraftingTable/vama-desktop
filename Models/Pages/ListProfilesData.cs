@@ -9,7 +9,3 @@ public record ListProfilesData
     public string? State { get; set; }
     public ObservableCollection<ProfileCardData>? Profiles { get; set; }
 }
-
-public record Profile
-{
-}

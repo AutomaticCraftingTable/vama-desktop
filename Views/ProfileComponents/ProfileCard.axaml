@@ -19,11 +19,11 @@
                 <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                     <TextBlock Classes="bold" Text="{Binding #Self.Data.Nickname}" Margin="0,4" />
                     <TextBlock Classes="sub secondary"
-                               Text="{Binding #Self.Data.Subscribers, StringFormat='subskrybenci: {0}'}" />
+                               Text="{Binding #Self.Data.Followers, StringFormat='subskrybenci: {0}'}" />
                     <TextBlock Classes="sub secondary"
-                               Text="{Binding #Self.Data.Likes, StringFormat='polubienia: {0}'}" />
+                               Text="{Binding #Self.Data.Description}" />
                 </StackPanel>
-
+            
                 <components:DropdownButton Grid.Column="2" Items="{Binding #Self.DropdownItems}" />
             </avalonia:SpacedGrid>
 

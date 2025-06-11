@@ -29,7 +29,7 @@ public partial class NoteComponent : UserControl
 
     async void DeleteNote()
     {
-        var r = TheoryRequests.DeleteNote(Note.ArticletId);
+        var r = TheoryRequests.DeleteNote(Note.Id);
         r.Actions.OnSuccess += _ => Content = null;
         await r.AsyncInvoke();
     }
@@ -39,7 +39,9 @@ public partial class NoteComponent : UserControl
         new()
         {
             Text = "Usuń notatkę",
-            Click = new RelayCommand(DeleteNote)
+            Click = new RelayCommand(
+                () => _ = TheoryRequests.DeleteNote(Note.Id).AsyncInvoke()
+            )
         }
     };
 }
