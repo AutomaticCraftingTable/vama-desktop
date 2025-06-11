@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:layouts="clr-namespace:VamaDesktop.Layouts"
+             xmlns:vm="clr-namespace:VamaDesktop.ViewModels"
+             xmlns:moderatorComponents="clr-namespace:VamaDesktop.Views.ModeratorComponents"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="VamaDesktop.Views.ModeratorsView"
+             x:DataType="vm:ModeratorsViewModel">
+    <layouts:SidebarLayout Index="1" Router="{Binding Router}">
+        <ItemsRepeater ItemsSource="{Binding ModeratorsModel.Moders}">
+            <ItemsRepeater.ItemTemplate>
+                <DataTemplate>
+                    <moderatorComponents:ModeratorCard Moderator="{Binding}" />
+                </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+            <ItemsRepeater.Layout>
+                <StackLayout Spacing="24" />
+            </ItemsRepeater.Layout>
+        </ItemsRepeater>
+    </layouts:SidebarLayout>
+</UserControl>

@@ -11,30 +11,45 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
         <StackPanel Spacing="24">
-            <Svg Width="160" Path="avares://VamaDesktop/Assets/vama.svg" />
+            <Svg Width="160" Path="{DynamicResource LogoPath}" />
             <TextBlock Text="Witamy w panelu VAMA"
                        FontSize="24"
                        FontWeight="Bold"
                        HorizontalAlignment="Center" />
-
-            <controls:ErrorWrapper Message="{Binding Error.Email}">
-                <TextBox Watermark="Email" />
+            
+            <controls:ErrorWrapper Message="{Binding RegisterError.Errors.Email[0]}">
+                <TextBox Watermark="Email"
+                         Text="{Binding Credentials.Email, Mode=TwoWay}" />
             </controls:ErrorWrapper>
-
-            <controls:ErrorWrapper Message="{Binding Error.Password}">
+            
+            <controls:ErrorWrapper Message="{Binding RegisterError.Errors.Password[0]}">
                 <TextBox Watermark="Hasło"
-                         PasswordChar="*" />
+                         PasswordChar="*"
+                         Text="{Binding Credentials.Password, Mode=TwoWay}" />
             </controls:ErrorWrapper>
-
-            <controls:ErrorWrapper Message="{Binding Error.Regulations}">
+            
+            <controls:ErrorWrapper Message="{Binding Regulations}">
                 <CheckBox Content="Zaznaczając, akceptuję regulamin i politykę prywatności"
                           IsChecked="{Binding RegulationsAccepted, Mode=TwoWay}" />
             </controls:ErrorWrapper>
 
-            <Button Classes="wide" Content="Zarejestruj się"
+            <Button Classes="wide"
+                    Content="Zarejestruj się"
                     Click="Register" />
+            
+            <Button Classes="wide"
+                    Click="RegisterGoogle">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="avares://VamaDesktop/Assets/google.png"
+                           Width="20" Height="20" Margin="0,0,8,0"/>
+                    <TextBlock Text="Wejdź przez Google" VerticalAlignment="Center" FontSize="16"/>
+                </StackPanel>
+            </Button>
+            
             <TextBlock HorizontalAlignment="Center">Albo</TextBlock>
-            <Button Classes="secondary" HorizontalAlignment="Center"
+            
+            <Button Classes="secondary"
+                    HorizontalAlignment="Center"
                     Content="Zaloguj się"
                     Click="GoLogin" />
         </StackPanel>

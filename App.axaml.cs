@@ -1,12 +1,15 @@
 using System;
+using Akavache;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.SimpleRouter;
+using Avalonia.Styling;
 using DotNetEnv;
 using Flurl.Http;
 using Microsoft.Extensions.DependencyInjection;
 using VamaDesktop.API;
+using VamaDesktop.Controls;
 using VamaDesktop.ViewModels;
 using VamaDesktop.Views;
 
@@ -16,6 +19,7 @@ public partial class App : Application
 {
     public override void Initialize()
     {
+        SessionManager.Init();
         AvaloniaXamlLoader.Load(this);
     }
 
@@ -51,6 +55,14 @@ public partial class App : Application
         services.AddTransient<RegisterViewModel>();
         services.AddTransient<LoginViewModel>();
         services.AddTransient<AdminPanelViewModel>();
+        services.AddTransient<ProfilesViewModel>();
+        services.AddTransient<ModeratorsViewModel>();
+        services.AddTransient<ReportAuthorViewModel>();
+        services.AddTransient<ReportArticleViewModel>();
+        services.AddTransient<ReportCommentViewModel>();
+        services.AddTransient<OwnActivityViewModel>();
+        services.AddTransient<AdminsActivityViewModel>();
+        services.AddTransient<WaitUntilAdminAllowsViewModel>();
         return services.BuildServiceProvider();
     }
 }

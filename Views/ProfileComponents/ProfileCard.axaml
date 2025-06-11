@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:components="clr-namespace:VamaDesktop.Views.Components"
+             xmlns:ail="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             xmlns:profileComponents="clr-namespace:VamaDesktop.Views.ProfileComponents"
+             xmlns:avalonia="clr-namespace:SpacedGridControl.Avalonia;assembly=SpacedGridControl.Avalonia"
+             xmlns:controls="clr-namespace:VamaDesktop.Controls"
+             xmlns:converters="clr-namespace:VamaDesktop.Converters"
+             x:Class="VamaDesktop.Views.ProfileComponents.ProfileCard"
+             x:CompileBindings="False"
+             x:Name="Self">
+    <Border Classes="wrapper">
+        <avalonia:SpacedGrid RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
+            <avalonia:SpacedGrid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                <Border Classes="roundClip">
+                    <Image Width="70" Height="70" ail:ImageLoader.Source="{Binding #Self.Data.Logo}" />
+                </Border>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <TextBlock Classes="bold" Text="{Binding #Self.Data.Nickname}" Margin="0,4" />
+                    <TextBlock Classes="sub secondary"
+                               Text="{Binding #Self.Data.Followers, StringFormat='subskrybenci: {0}'}" />
+                    <TextBlock Classes="sub secondary"
+                               Text="{Binding #Self.Data.Description}" />
+                </StackPanel>
+            
+                <components:DropdownButton Grid.Column="2" Items="{Binding #Self.DropdownItems}" />
+            </avalonia:SpacedGrid>
+
+            <TabControl Grid.Row="1" SelectionChanged="TabSwitched">
+                <TabItem CornerRadius="4" Header="Komentarze" />
+                <TabItem CornerRadius="4" Header="Artykuły" />
+            </TabControl>
+            <StackPanel Grid.Row="2">
+                <profileComponents:CommentsSubsection
+                    IsVisible="{Binding #Self.SectionId, Converter={x:Static converters:EqualityConverter.Instance}, ConverterParameter=0}"
+                    Comments="{Binding #Self.Data.Comments}" />
+                <profileComponents:ArticlesSubsection
+                    IsVisible="{Binding #Self.SectionId, Converter={x:Static converters:EqualityConverter.Instance}, ConverterParameter=1}"
+                    Articles="{Binding #Self.Data.Articles}" />
+            </StackPanel>
+        </avalonia:SpacedGrid>
+    </Border>
+</UserControl>

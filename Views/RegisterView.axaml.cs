@@ -16,4 +16,9 @@ public partial class RegisterView : ViewControl<RegisterViewModel>
     {
         ViewModel.Register();
     }
+
+    private void RegisterGoogle(object? sender, RoutedEventArgs e)
+    {
+        ViewModel.RegisterGoogle();
+    }
 }

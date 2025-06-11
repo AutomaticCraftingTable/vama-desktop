@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:components="clr-namespace:VamaDesktop.Views.Components"
+             xmlns:ail="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="VamaDesktop.Views.Components.Box"
+             x:CompileBindings="False"
+             x:Name="Self">
+    <Border Padding="0"
+            CornerRadius="8"
+            ClipToBounds="True"
+            Background="{DynamicResource SecondaryBrush}">
+        <Grid ColumnDefinitions="Auto,*,Auto">
+            <Image Grid.Column="0" Width="100" Height="100"
+                   ail:ImageLoader.Source="{Binding #Self.ImageUrl}"
+                   IsVisible="{Binding #Self.ImageUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+            </Image>
+
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" Padding="16" Text="{Binding #Self.Text}" />
+
+            <components:DropdownButton Grid.Column="2" Padding="16" Items="{Binding #Self.DropdownItems}" />
+        </Grid>
+    </Border>
+</UserControl>

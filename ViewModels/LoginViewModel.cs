@@ -1,31 +1,101 @@
+using System;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using Avalonia.SimpleRouter;
-using VamaDesktop.API.DTO;
-using VamaDesktop.API.DTO.Exceptions;
-using VamaDesktop.API.Services;
+using Flurl.Http;
+using VamaDesktop.API;
+using VamaDesktop.API.DTO.Models.Body;
+using VamaDesktop.API.DTO.Models.Error;
+using VamaDesktop.API.DTO.Models.Success;
 using VamaDesktop.API.Utils;
 
 namespace VamaDesktop.ViewModels;
 
-public class LoginViewModel : ViewModelBase
+public class LoginViewModel(HistoryRouter<ViewModelBase> router) : RoutedModelBase(router)
 {
-    private readonly Request<MessageResponse, LoginError> loginRequest = new AuthService().Login;
+    private Timer? _timer;
+    public AuthCredentials Credentials { get; } = new AuthCredentials();
+    public CommonErrorRecord<LoginError>? LoginError { get; set; }
 
-    private LoginError _error = new();
-
-    public LoginError Error
+    public async void Login()
     {
-        get => _error;
-        set => SetProperty(ref _error, value);
+        // (_, LoginError) = await DeprecatedRequestClient<
+        //     AuthResponse,
+        //     CommonErrorRecord<LoginError>
+        // >.Post(
+        //     "/api/auth/login",
+        //     Credentials,
+        //     onSuccess: body =>
+        //     {
+        //         SessionManager.SaveSession(body);
+        //         Router.GoTo<AdminPanelViewModel>();
+        //     }
+        // );
+
+        // var requestActions = new RequestActions<AuthResponse?, CommonErrorRecord<LoginError>?>();
+        // requestActions.OnSuccess += body =>
+        // {
+        //     SessionManager.SaveSession(body);
+        //     Router.GoTo<AdminPanelViewModel>();
+        // };
+        //
+        // (_, LoginError) = await Requests.CreateLogin(Credentials, requestActions);
+        
+        
+        var r = Requests.AuthLogin(Credentials);
+        r.Actions.OnSuccess += body =>
+        {
+            SessionManager.SaveSession(body);
+            Router.GoTo<AdminPanelViewModel>();
+        };
+        
+        (_, LoginError) = await Reuqests.Request(r);
+
+        SetState();
     }
 
-    public LoginViewModel(HistoryRouter<ViewModelBase> router) : base(router)
+    public async void LoginGoogle()
     {
-        loginRequest.OnSuccess += _ => Router.GoTo<AdminPanelViewModel>();
-        loginRequest.OnError += error => Error = error;
-    }
+        var (oAuth, error) = await DeprecatedRequestClient<
+            InitGoogleLoginResponse,
+            MessageError
+        >.Get("/auth/google/init");
 
-    public void Login()
-    {
-        loginRequest.Invoke();
+        LoginError = (LoginError ?? new CommonErrorRecord<LoginError>()) with
+        {
+            Message = error.Message
+        };
+
+        if (oAuth.Redirect_url == null) return;
+        Process.Start(new ProcessStartInfo(oAuth.Redirect_url) { UseShellExecute = true });
+
+        var googleLoginPollRequest = new DeprecatedRequestClient<GoogleLoginResponse, MessageError>(
+            async client => await client
+                .Request($"/auth/google/wait/{oAuth.State}")
+                .GetJsonAsync<GoogleLoginResponse>()
+        );
+
+        googleLoginPollRequest.OnSuccess += body =>
+        {
+            if (body?.Status == "waiting") return;
+            Console.WriteLine(body?.Token);
+            SessionManager.SaveSession(new AuthResponse()
+            {
+                Token = body?.Token,
+                User = body?.User,
+            });
+            _timer?.Dispose();
+            Router.GoTo<AdminPanelViewModel>();
+        };
+        googleLoginPollRequest.OnError += body =>
+        {
+            LoginError = new() { Message = body.Message };
+            _timer?.Dispose();
+        };
+        googleLoginPollRequest.OnFinish += SetState;
+
+        _timer = new Timer(async _ => await googleLoginPollRequest.Invoke(), null, 0, 1000);
     }
 }

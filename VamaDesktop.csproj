@@ -13,7 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="akavache" Version="10.2.41" />
+    <PackageReference Include="AsyncImageLoader.Avalonia" Version="3.3.0" />
     <PackageReference Include="Avalonia" Version="11.2.7" />
+    <PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="11.1.5" />
     <PackageReference Include="Avalonia.Desktop" Version="11.2.7" />
     <PackageReference Include="Avalonia.Svg.Skia" Version="11.2.7" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.7" />
@@ -24,13 +27,66 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="Deadpikle.AvaloniaProgressRing" Version="0.10.10" />
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
     <PackageReference Include="Flurl" Version="4.0.0" />
     <PackageReference Include="Flurl.Http" Version="4.0.2" />
+    <PackageReference Include="Material.Avalonia" Version="3.12.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
     <PackageReference Include="Sandreas.Avalonia.SimpleRouter" Version="0.0.5" />
     <None Include=".env">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <PackageReference Include="SpacedGrid-Avalonia" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Layouts\SidebarLayout.axaml.cs">
+      <DependentUpon>SidebarView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ReportAuthorView.axaml.cs">
+      <DependentUpon>ReportAuthor.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ReportArticleView.axaml.cs">
+      <DependentUpon>ReportArticle.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ReportCommentView.axaml.cs">
+      <DependentUpon>ReportComment.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\OwnActivityView.axaml.cs">
+      <DependentUpon>OwnActivity.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AdminsActivityView.axaml.cs">
+      <DependentUpon>AdminsActivityView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Components\Box.axaml.cs">
+      <DependentUpon>CommentView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProfileComponents\ProfileCard.axaml.cs">
+      <DependentUpon>Profile.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProfileComponents\ArticlesSubsection.axaml.cs">
+      <DependentUpon>ArticlesSubsection.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProfileComponents\CommentComponent.axaml.cs">
+      <DependentUpon>ItemComponent.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ModeratorComponents\NotesSubsection.axaml.cs">
+      <DependentUpon>CommentsSubsection.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\TestComponentNesting\Parent.axaml" />
   </ItemGroup>
 </Project>
