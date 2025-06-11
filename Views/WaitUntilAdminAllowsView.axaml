@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pg="clr-namespace:AvaloniaProgressRing;assembly=AvaloniaProgressRing"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="VamaDesktop.Views.WaitUntilAdminAllowsView">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="24">
+        <Svg Width="160" Path="{DynamicResource LogoPath}" />
+        <StackPanel Spacing="12">
+            <TextBlock Text="Brak uprawnień"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Uprawnienia dla tego konta nie zostały dodane lub zostały usunięte."
+                       FontSize="16"
+                       Foreground="{DynamicResource TextSecondaryBrush}"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Poproś o uprawnienia swojego administratora"
+                       FontSize="16"
+                       Foreground="{DynamicResource TextSecondaryBrush}"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Center" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

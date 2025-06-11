@@ -1,8 +1,6 @@
-using System;
 using System.Collections.ObjectModel;
-using System.Text.Json.Serialization;
 
-namespace VamaDesktop.Models.Pages;
+namespace VamaDesktop.Models.Get;
 
 public record ListProfilesData
 {

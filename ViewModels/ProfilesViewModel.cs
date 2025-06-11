@@ -5,7 +5,7 @@ using Avalonia.SimpleRouter;
 using VamaDesktop.API.DTO.Base;
 using VamaDesktop.API.Utils;
 using VamaDesktop.Models;
-using VamaDesktop.Models.Pages;
+using VamaDesktop.Models.Get;
 
 namespace VamaDesktop.ViewModels;
 

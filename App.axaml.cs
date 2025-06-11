@@ -62,6 +62,7 @@ public partial class App : Application
         services.AddTransient<ReportCommentViewModel>();
         services.AddTransient<OwnActivityViewModel>();
         services.AddTransient<AdminsActivityViewModel>();
+        services.AddTransient<WaitUntilAdminAllowsViewModel>();
         return services.BuildServiceProvider();
     }
 }

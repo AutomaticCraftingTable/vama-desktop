@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using VamaDesktop.API.DTO.Models.Body;
 using VamaDesktop.API.DTO.Models.Error;
 using VamaDesktop.API.DTO.Models.Success;
-using VamaDesktop.Models.Pages;
+using VamaDesktop.Models.Get;
 
 namespace VamaDesktop.API.Utils;
 

@@ -9,6 +9,7 @@ using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Flurl.Http;
 using VamaDesktop.API.DTO;
+using VamaDesktop.API.DTO.Models.Success;
 using VamaDesktop.API.Utils;
 
 namespace VamaDesktop.ViewModels;
@@ -24,18 +25,29 @@ public partial class MainViewModel : RoutedModelBase
         Router.CurrentViewModelChanged += viewModel => Content = viewModel;
      
         Router.GoTo<ProfilesViewModel>();
-        // TryRecoverSession();
+        TryRecoverSession();
     }
 
     public void TryRecoverSession()
     {
-        var requset = new RequestClient<object, object>(
+        var requset = new RequestClient<AuthResponse, object>(
             async client => await client
                 .Request("/api/user")
-                .GetJsonAsync<object>()
+                .GetJsonAsync<AuthResponse>()
         );
-        requset.OnSuccess += _ => Router.GoTo<AdminPanelViewModel>();
+        requset.OnSuccess += body =>
+        {
+            if (body.User?.Role is "admin" or "superadmin")
+                Router.GoTo<AdminPanelViewModel>();
+            else
+                Router.GoTo<WaitUntilAdminAllowsViewModel>();
+        };
         requset.OnError += _ => Router.GoTo<LoginViewModel>();
         requset.Invoke();
+    }
+
+    public void CheckRoleSufficiency()
+    {
+        
     }
 }
