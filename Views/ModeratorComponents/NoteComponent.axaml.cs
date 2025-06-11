@@ -27,20 +27,17 @@ public partial class NoteComponent : UserControl
         set => SetValue(NoteProperty, value);
     }
 
-    async void DeleteNote()
-    {
-        var r = TheoryRequests.DeleteNote(Note.Id);
-        r.Actions.OnSuccess += _ => Content = null;
-        await r.AsyncInvoke();
-    }
-
     public ObservableCollection<ButtonData> DropdownItems => new()
     {
         new()
         {
             Text = "Usuń notatkę",
             Click = new RelayCommand(
-                () => _ = TheoryRequests.DeleteNote(Note.Id).AsyncInvoke()
+                () =>
+                {
+                    if (Note.Id is not { } id) return;
+                    _ = TheoryRequests.DeleteNote(id).AsyncInvoke();
+                }
             )
         }
     };

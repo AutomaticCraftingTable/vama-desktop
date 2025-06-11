@@ -12,7 +12,7 @@
         <Grid ColumnDefinitions="*,Auto">
             <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="16">
                 <TextBlock Foreground="{DynamicResource TextDimmedBrush}" FontSize="12" Text="{Binding #Self.Note.UpdatedAt, StringFormat='Data: {0}'}" />
-                <TextBlock Foreground="{DynamicResource TextDimmedBrush}" FontSize="12" Text="{Binding #Self.Note.ArticletId, StringFormat='ID: {0}'}" />
+                <TextBlock Foreground="{DynamicResource TextDimmedBrush}" FontSize="12" Text="{Binding #Self.Note.ArticleId, StringFormat='ID: {0}'}" />
                 <TextBlock Padding="0,16,0,0" Foreground="{DynamicResource TextBrush}" Text="{Binding #Self.Note.Content}" />
             </StackPanel>
 

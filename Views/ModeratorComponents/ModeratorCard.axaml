@@ -15,7 +15,7 @@
                 </Border>
 
                 <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                    <TextBlock Classes="bold" Text="{Binding #Self.Moderator.Nickname}" Margin="0,4" />
+                    <TextBlock Classes="bold" Text="{Binding #Self.Moderator.Email}" Margin="0,4" />
                     <TextBlock Classes="sub secondary"
                                Text="{Binding #Self.Moderator.Notes.Count, StringFormat='napisane notatki: {0}'}" />
                 </StackPanel>

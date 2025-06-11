@@ -7,6 +7,7 @@ using Avalonia.Markup.Xaml;
 using CommunityToolkit.Mvvm.Input;
 using VamaDesktop.API.Utils;
 using VamaDesktop.Models;
+using VamaDesktop.Models.Get;
 
 namespace VamaDesktop.Views.ModeratorComponents;
 
@@ -17,11 +18,11 @@ public partial class ModeratorCard : UserControl
         InitializeComponent();
     }
 
-    public static readonly StyledProperty<ModeratorCardData> ModeratorProperty =
-        AvaloniaProperty.Register<ModeratorCard, ModeratorCardData>(
+    public static readonly StyledProperty<ModeratorData> ModeratorProperty =
+        AvaloniaProperty.Register<ModeratorCard, ModeratorData>(
             nameof(Moderator));
 
-    public ModeratorCardData Moderator
+    public ModeratorData Moderator
     {
         get => GetValue(ModeratorProperty);
         set => SetValue(ModeratorProperty, value);
@@ -34,12 +35,14 @@ public partial class ModeratorCard : UserControl
             Text = "Obniż rolę do użytkownika",
             Click = new RelayCommand(() =>
             {
-                if (Moderator.AccountId is not { } id) return;
+                if (Moderator.Id is not { } id) return;
 
                 var r = TheoryRequests.ChangeRole(
                     id,
                     new Dictionary<string, string> { { "role", "user" } }
-                ).AsyncInvoke();
+                );
+                r.Actions.OnSuccess += _ => Content = null;
+                r.AsyncInvoke();
             })
         },
         new()
@@ -47,7 +50,7 @@ public partial class ModeratorCard : UserControl
             Text = "Usuń konto",
             Click = new RelayCommand(() =>
             {
-                if (Moderator.AccountId is not { } id) return;
+                if (Moderator.Id is not { } id) return;
 
                 var r = TheoryRequests.DeleteAccount(id);
                 r.Actions.OnSuccess += _ => Content = null;

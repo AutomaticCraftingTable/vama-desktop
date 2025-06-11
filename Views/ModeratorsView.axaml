@@ -9,7 +9,7 @@
              x:Class="VamaDesktop.Views.ModeratorsView"
              x:DataType="vm:ModeratorsViewModel">
     <layouts:SidebarLayout Index="1" Router="{Binding Router}">
-        <ItemsRepeater ItemsSource="{Binding ModeratorsData}">
+        <ItemsRepeater ItemsSource="{Binding ModeratorsModel.Moders}">
             <ItemsRepeater.ItemTemplate>
                 <DataTemplate>
                     <moderatorComponents:ModeratorCard Moderator="{Binding}" />

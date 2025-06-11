@@ -59,7 +59,7 @@ public class RequestPayload<TSuccessBody, TErrorBody>(
     string url,
     Dictionary<string, string>? queryParams = null,
     Dictionary<string, string>? headers = null
-) : RequestPayload<TSuccessBody, TErrorBody, object>(method, url, queryParams, headers)
+) : RequestPayload<TSuccessBody, TErrorBody, Dictionary<string, string>>(method, url, queryParams, headers)
     where TSuccessBody : class?, new()
     where TErrorBody : class?, new();
 

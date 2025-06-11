@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using VamaDesktop.API.DTO.Models.Body;
 using VamaDesktop.API.DTO.Models.Error;
 using VamaDesktop.API.DTO.Models.Success;
+using VamaDesktop.Models;
 using VamaDesktop.Models.Get;
 
 namespace VamaDesktop.API.Utils;
@@ -24,18 +27,7 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
-        object
-    > ActivitiesAdmin()
-    {
-        return new(
-            method: HttpMethod.Get,
-            url: "/api/activities/admins"
-        );
-    }
-
-    public static RequestPayload<
-        object,
+        ListModeratorsModel,
         object
     > ListModerators()
     {
@@ -46,7 +38,7 @@ public static class TheoryRequests
     }
 
     public static RequestPayload<
-        object,
+        ObservableCollection<ListOwnActivitiesModel>,
         object
     > Activities()
     {
@@ -226,26 +218,31 @@ public static class TheoryRequests
 
     public static RequestPayload<
         object,
-        object
+        object,
+        Dictionary<string, string>
     > BanComment(int commentId)
     {
         return new(
             method: HttpMethod.Post,
-            url: $"/api/comment/{commentId}/ban"
+            url: $"/api/comment/{commentId}/ban",
+            body: new Dictionary<string, string>
+                { { "content", $"Komentarz #{commentId} zablokowany przez administratora" } }
         );
     }
 
     public static RequestPayload<
         object,
-        object
+        object,
+        Dictionary<string, string>
     > ReportComment(int id)
     {
         return new(
             method: HttpMethod.Post,
-            url: $"/api/comment/{id}/report"
+            url: $"/api/comment/{id}/report",
+            body: new Dictionary<string, string> { { "content", $"Zgłoszony komentarz {id}" } }
         );
     }
-    
+
     public static RequestPayload<
         object,
         object

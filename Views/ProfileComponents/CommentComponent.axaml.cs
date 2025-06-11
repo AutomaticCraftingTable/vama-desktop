@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
+using VamaDesktop.API.Utils;
 using VamaDesktop.Models;
 
 namespace VamaDesktop.Views.ProfileComponents;
@@ -37,12 +38,17 @@ public partial class CommentComponent : UserControl
         new()
         {
             Text = "Zgłoś komentarz",
-            Click = new RelayCommand(() => Console.WriteLine($"Zgłoś komentarz: {Id}"))
+            Click = new RelayCommand(() => _ = TheoryRequests.ReportComment(Id).AsyncInvoke())
         },
         new()
         {
-            Text = "Zablokuj komentarz",
-            Click = new RelayCommand(() => Console.WriteLine($"Zablokuj komentarz: {Id}"))
+            Text = "Usuń (zablokuj) komentarz",
+            Click = new RelayCommand(() =>
+            {
+                var r = TheoryRequests.BanComment(Id);
+                r.Actions.OnSuccess += _ => Content = null;
+                r.AsyncInvoke();
+            })
         }
     };
 }
