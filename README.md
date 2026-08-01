@@ -1,7 +1,9 @@
-# [vama-desktop](https://github.dev/AutomaticCraftingTable/vama-desktop)
+# VAMA Articles Desktop
+
+Część projektu grupowego „VAMA Articles", zrealizowanego w ramach zajęć uniwersyteckich
 
 ## Zależności
-- Linux/WSL with [Nix](https://nixos.org/download/)
+- [Nix package manager](https://nixos.org/download/)
 
 ## Uruchomienie projektu
 Aby uruchomić powłokę z zaleznosciami:
